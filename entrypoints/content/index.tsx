@@ -1,12 +1,11 @@
 import '../popup/style.css';
-import ReactDOM from 'react-dom/client';
 import React from 'react';
+import { CreateContentElement } from '@/entrypoints/content/common';
 
 export default defineContentScript({
   matches: ['*://*/*'],
   cssInjectionMode: 'ui',
   async main(ctx) {
-    console.log('Content script is running');
     chrome.runtime.onMessage.addListener(async (message) => {
       switch (message.action) {
         case 'post': {
@@ -31,33 +30,9 @@ const CreateUI = async (ctx: any, message: string) => {
     name: 'post-element',
     position: 'overlay',
     onMount: (uiContainer, shadow, shadowHost) => {
-      const app = document.createElement('div');
-      uiContainer.append(app);
-
-      const styles = {
-        visibility: 'visible',
-        position: 'fixed',
-        top: '0',
-        right: '0',
-        bottom: '0',
-        left: '0',
-        width: '100%',
-        height: '100%',
-        zIndex: '9999',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      };
-      Object.assign(shadowHost.style, styles);
-
-      const root = ReactDOM.createRoot(app);
-      root.render(
-        <React.StrictMode>
-          <div className={'bg-amber-400 h-100'}>Hello World!! {message}</div>
-        </React.StrictMode>
-      );
-      return root;
+      return CreateContentElement(uiContainer, shadowHost, (root) => {
+        return <h1>Hello world {message}</h1>;
+      });
     },
     onRemove(root) {
       root?.unmount();
