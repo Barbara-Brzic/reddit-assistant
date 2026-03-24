@@ -9,7 +9,14 @@ export default defineConfig({
       name: 'WXT Example',
       description: 'WXT Example',
       version: '1.0.0',
-      permissions: ['storage', 'tabs'],
+      permissions: [
+        'storage',
+        'tabs',
+        'activeTab',
+        'scripting',
+        'contextMenus',
+        'declarativeNetRequest',
+      ],
     };
   },
 });
