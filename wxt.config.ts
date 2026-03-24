@@ -6,10 +6,10 @@ export default defineConfig({
   manifest: ({ manifestVersion }) => {
     return {
       manifest_version: manifestVersion,
-      name: "WXT Example",
-      description: "WXT Example",
-      version: "1.0.0",
-      permissions: ["storage", "tabs"],
+      name: 'WXT Example',
+      description: 'WXT Example',
+      version: '1.0.0',
+      permissions: ['storage', 'tabs'],
     };
   },
 });
