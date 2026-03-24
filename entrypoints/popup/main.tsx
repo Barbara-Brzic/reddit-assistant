@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './style.css';
+import CredentialForm from '@/entrypoints/popup/components/CredentialForm.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <h1 className={'text-2xl text-red-500'}>Hello world</h1>
+    <CredentialForm />
   </React.StrictMode>
 );
