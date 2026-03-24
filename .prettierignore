@@ -1,0 +1,7 @@
+node_modules
+.wxt
+.output
+dist
+*.log
+package-lock.json
+pnpm-lock.yaml
