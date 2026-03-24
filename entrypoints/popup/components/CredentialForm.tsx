@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Eye, EyeOff, Save } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -13,9 +14,23 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { useFormData } from '@/entrypoints/hooks/useFormData.ts';
 
 const formSchema = z.object({
-  endpoint: z.string().min(1, 'Endpoint is required'),
+  endpoint: z
+    .string()
+    .min(1, 'Endpoint is required')
+    .refine(
+      (value) => {
+        try {
+          new URL(value);
+          return true;
+        } catch (e) {
+          return false;
+        }
+      },
+      { message: 'Endpoint must be a URL' }
+    ),
   apiKey: z
     .string()
     .min(1, 'API key is required')
@@ -26,17 +41,21 @@ type FormValues = z.infer<typeof formSchema>;
 
 export default function CredentialForm() {
   const [showApiKey, setShowApiKey] = useState(false);
-
+  const { formData, setFormData } = useFormData();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      endpoint: '',
-      apiKey: '',
-    },
+    defaultValues: formData,
   });
 
+  useEffect(() => {
+    form.reset(formData);
+  }, [formData, form]);
+
   const onSubmit = (data: FormValues) => {
-    console.log(data);
+    setFormData(data);
+    chrome.storage.local.set({ formData: data }, () =>
+      toast.success('API credentials saved')
+    );
   };
 
   return (
