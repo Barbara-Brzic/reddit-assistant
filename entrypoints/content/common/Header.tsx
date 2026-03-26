@@ -10,7 +10,7 @@ export default function Header({
   onClose: () => void;
 }>) {
   return (
-    <div className={'flex flex-row m-3 justify-between items-center'}>
+    <div className={'flex flex-row justify-between items-center'}>
       <h1 className={'text-lg font-bold'}>
         {title}
         {count > 0 && <span className={'ml-2'}>({count})</span>}
