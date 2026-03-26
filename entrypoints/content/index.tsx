@@ -4,7 +4,10 @@ import { CreateContentElement } from '@/entrypoints/content/common';
 import PostsModal from '@/entrypoints/content/posts/PostsModal.tsx';
 import { ContentScriptContext } from 'wxt/utils/content-script-context';
 import CommentsModal from '@/entrypoints/content/comments/CommentsModal.tsx';
-import { extractRedditPostsFromDOM } from '@/entrypoints/content/scripts/scrap.ts';
+import {
+  extractRedditCommentsFromDOM,
+  extractRedditPostsFromDOM,
+} from '@/entrypoints/content/scripts/scrap.ts';
 
 export default defineContentScript({
   matches: ['*://*/*'],
@@ -45,12 +48,13 @@ const CreateUI = async (
         };
 
         const posts = extractRedditPostsFromDOM();
+        const comments = extractRedditCommentsFromDOM();
 
         switch (type) {
           case 'posts':
             return <PostsModal posts={posts} onRemove={onRemove} />;
           case 'comments':
-            return <CommentsModal onRemove={onRemove} />;
+            return <CommentsModal comments={comments} onRemove={onRemove} />;
           default:
             return null;
         }

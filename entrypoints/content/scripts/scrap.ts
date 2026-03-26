@@ -52,3 +52,31 @@ export function extractRedditPostsFromDOM(): IPost[] {
 
   return postData;
 }
+
+export function extractRedditCommentsFromDOM(): IComment[] {
+  const commentElements = document.querySelectorAll('shreddit-comment');
+  const commentData: IComment[] = [];
+
+  commentElements.forEach((commentElement, key) => {
+    const author = commentElement.getAttribute('author') || '';
+    const permalink = commentElement.getAttribute('permalink') || '';
+    const thingId = commentElement.getAttribute('thingid') || '';
+    const commentContentDiv = document.getElementById(
+      `${thingId}-post-rtjson-content`
+    );
+    const score = commentElement.getAttribute('score') || '';
+
+    if (commentContentDiv) {
+      const commentContent = commentContentDiv.innerText || '';
+      commentData.push({
+        id: thingId || key.toString(),
+        author,
+        comment: commentContent,
+        permalink,
+        score,
+      });
+    }
+  });
+
+  return commentData;
+}
