@@ -5,7 +5,7 @@ import { IPost } from '@/entrypoints/content/scripts/scrap.ts';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card } from '@/components/ui/card.tsx';
 import SearchInput from '@/entrypoints/content/common/SearchInput.tsx';
-import useGemini from '@/entrypoints/hooks/useGemini.tsx';
+import usePostsSearch from '@/entrypoints/hooks/usePostsSearch.tsx';
 
 export default function PostsModal({
   posts,
@@ -14,7 +14,7 @@ export default function PostsModal({
   posts: IPost[];
   onRemove: () => void;
 }>) {
-  const { handleSearch, geminiResponse, loading } = useGemini();
+  const { searchPosts, geminiResponse, loading } = usePostsSearch();
 
   const handlePostClick = (post: IPost) => {
     if (post.link) {
@@ -34,7 +34,7 @@ export default function PostsModal({
         onClose={onRemove}
       />
       <SearchInput
-        handleSearch={(searchQuery) => handleSearch(searchQuery, posts)}
+        handleSearch={(searchQuery) => searchPosts(searchQuery, posts)}
       />
 
       <div className={'flex flex-col justify-center align-center w-full'}>

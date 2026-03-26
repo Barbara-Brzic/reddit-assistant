@@ -6,12 +6,12 @@ import {
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-export default function useGemini() {
+export default function usePostsSearch() {
   const [geminiResponse, setGeminiResponse] = useState<IPost[]>([]);
   const [loading, setLoading] = useState(false);
   const { formData } = useFormData();
 
-  const handleSearch = async (searchQuery: string, posts: IPost[]) => {
+  const searchPosts = async (searchQuery: string, posts: IPost[]) => {
     setLoading(true);
     setGeminiResponse([]);
 
@@ -60,5 +60,5 @@ export default function useGemini() {
     return extractJsonListFromMarkdown(data);
   };
 
-  return { handleSearch, geminiResponse, loading };
+  return { searchPosts, geminiResponse, loading };
 }
