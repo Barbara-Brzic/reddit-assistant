@@ -13,7 +13,12 @@ export default function CommentsModal({
 }: Readonly<{ post: IPost; comments: IComment[]; onRemove: () => void }>) {
   const [loading, setLoading] = useState(false);
 
-  console.log(post);
+  const handleCommentClick = (comment: IComment) => {
+    if (comment.permalink) {
+      window.open(comment.permalink, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <div
       className={
@@ -39,6 +44,7 @@ export default function CommentsModal({
                 className={
                   'flex flex-col p-3 bg-card shadow-sm rounded-md hover:bg-accent cursor-pointer'
                 }
+                onClick={() => handleCommentClick(comment)}
               >
                 <div className={'text-sm mb-2'}>
                   <Badge variant={'secondary'}>{comment.author}</Badge>
