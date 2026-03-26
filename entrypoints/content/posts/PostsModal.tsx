@@ -1,55 +1,46 @@
 import Header from '@/entrypoints/content/common/Header.tsx';
 import { Spinner } from '@/components/ui/spinner.tsx';
 import { Badge } from '@/components/ui/badge';
+import { IPost } from '@/entrypoints/content/scripts/scrap.ts';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function PostsModal({
+  posts,
   onRemove,
 }: Readonly<{
+  posts: IPost[];
   onRemove: () => void;
 }>) {
   const [loading, setLoading] = useState(false);
 
-  const postData = [
-    {
-      id: 1,
-      tag: 'Technology',
-      title: 'Post 1',
-      description: 'This is the content of post 1.',
-      score: 130,
-      comments: 5,
-    },
-    {
-      id: 2,
-      tag: 'Technology',
-      title: 'Post 1',
-      description: 'This is the content of post 1.',
-      score: 145,
-      comments: 23,
-    },
-  ];
-
   return (
     <div
       className={
-        'min-w-125 rounded-md shadow-sm overflow-hidden bg-secondary p-2'
+        'min-w-130 max-h-170 rounded-md shadow-sm overflow-hidden bg-secondary p-2'
       }
     >
-      <Header title={'Posts'} count={postData?.length} onClose={onRemove} />
+      <Header title={'Posts'} count={posts?.length} onClose={onRemove} />
       <div className={'flex flex-col justify-center align-center w-full'}>
-        {loading ? (
+        {loading && (
           <div className={'flex justify-center items-center p-2'}>
             <Spinner />
           </div>
-        ) : (
-          <div className={'flex flex-col gap-2'}>
-            {postData?.map((post) => (
+        )}
+
+        <ScrollArea className={'h-150 w-130'}>
+          <div className={'flex flex-col gap-2 p-2'}>
+            {posts?.map((post) => (
               <div
                 key={post.id}
-                className={'flex flex-col p-2 bg-card shadow-sm rounded-md'}
+                className={
+                  'flex flex-col px-4 py-2 bg-card shadow-sm rounded-md'
+                }
               >
-                <div className={'ml-auto text-sm'}>
-                  <Badge variant={'secondary'}>{post.tag}</Badge>
-                </div>
+                {post.tag && (
+                  <div className={'ml-auto text-sm'}>
+                    <Badge variant={'secondary'}>{post.tag}</Badge>
+                  </div>
+                )}
                 <h2>{post.title}</h2>
                 <p className={'text-sm text-muted-foreground'}>
                   {post.description}
@@ -67,7 +58,7 @@ export default function PostsModal({
               </div>
             ))}
           </div>
-        )}
+        </ScrollArea>
       </div>
     </div>
   );
