@@ -4,28 +4,30 @@ import { Toaster } from 'react-hot-toast';
 
 export const CreateContentElement = (
   uiContainer: HTMLElement,
-  shadowContainer: HTMLElement,
   callback: (root: ReactDOM.Root) => React.ReactNode
 ): ReactDOM.Root => {
-  const app = document.createElement('div');
-  uiContainer.append(app);
+  // Clear container
+  uiContainer.innerHTML = '';
 
-  const styles = {
-    visibility: 'visible',
+  // Create backdrop overlay
+  const backdrop = document.createElement('div');
+  Object.assign(backdrop.style, {
     position: 'fixed',
     top: '0',
-    right: '0',
-    bottom: '0',
     left: '0',
-    width: '100%',
-    height: '100%',
-    zIndex: '9999',
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  };
-  Object.assign(shadowContainer.style, styles);
+    zIndex: '10000',
+  });
+
+  // Create app container
+  const app = document.createElement('div');
+  backdrop.appendChild(app);
+  uiContainer.appendChild(backdrop);
 
   const root = ReactDOM.createRoot(app);
   root.render(

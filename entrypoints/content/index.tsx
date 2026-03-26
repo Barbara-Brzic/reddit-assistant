@@ -1,6 +1,7 @@
 import '../popup/style.css';
 import React from 'react';
 import { CreateContentElement } from '@/entrypoints/content/common';
+import PostsModal from '@/entrypoints/content/posts/PostsModal.tsx';
 
 export default defineContentScript({
   matches: ['*://*/*'],
@@ -26,16 +27,25 @@ export default defineContentScript({
 });
 
 const CreateUI = async (ctx: any, message: string) => {
-  return createShadowRootUi(ctx, {
+  let removeUi: (() => void) | null = null;
+
+  const ui = await createShadowRootUi(ctx, {
     name: 'post-element',
     position: 'overlay',
     onMount: (uiContainer, shadow, shadowHost) => {
-      return CreateContentElement(uiContainer, shadowHost, (root) => {
-        return <h1>Hello world {message}</h1>;
+      return CreateContentElement(uiContainer, (root) => {
+        const onRemove = () => {
+          if (removeUi) removeUi();
+        };
+
+        return <PostsModal onRemove={onRemove} />;
       });
     },
     onRemove(root) {
       root?.unmount();
     },
   });
+
+  removeUi = () => ui.remove();
+  return ui;
 };
