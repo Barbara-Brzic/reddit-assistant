@@ -16,6 +16,11 @@ export default function SearchInput({
         placeholder="Search..."
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleSearch(value);
+          }
+        }}
       />
       <Button onClick={() => handleSearch(value)}>Search</Button>
     </Field>
