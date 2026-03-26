@@ -2,15 +2,18 @@ import Header from '@/entrypoints/content/common/Header.tsx';
 import { Spinner } from '@/components/ui/spinner.tsx';
 import { Badge } from '@/components/ui/badge.tsx';
 import Markdown from 'react-markdown';
-import { IComment } from '@/entrypoints/content/scripts/scrap.ts';
+import { IComment, IPost } from '@/entrypoints/content/scripts/scrap.ts';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
+import { Card } from '@/components/ui/card.tsx';
 
 export default function CommentsModal({
+  post,
   comments,
   onRemove,
-}: Readonly<{ comments: IComment[]; onRemove: () => void }>) {
+}: Readonly<{ post: IPost; comments: IComment[]; onRemove: () => void }>) {
   const [loading, setLoading] = useState(false);
 
+  console.log(post);
   return (
     <div
       className={
@@ -31,9 +34,11 @@ export default function CommentsModal({
         <ScrollArea className={'h-150 w-130'}>
           <div className={'flex flex-col gap-2'}>
             {comments?.map((comment) => (
-              <div
+              <Card
                 key={comment.id}
-                className={'flex flex-col p-3 bg-card shadow-sm rounded-md'}
+                className={
+                  'flex flex-col p-3 bg-card shadow-sm rounded-md hover:bg-accent cursor-pointer'
+                }
               >
                 <div className={'text-sm mb-2'}>
                   <Badge variant={'secondary'}>{comment.author}</Badge>
@@ -42,7 +47,7 @@ export default function CommentsModal({
                 <span className={'text-sm text-muted-foreground mt-3'}>
                   Score: {comment.score}
                 </span>
-              </div>
+              </Card>
             ))}
           </div>
         </ScrollArea>

@@ -48,13 +48,21 @@ const CreateUI = async (
         };
 
         const posts = extractRedditPostsFromDOM();
-        const comments = extractRedditCommentsFromDOM();
 
         switch (type) {
           case 'posts':
             return <PostsModal posts={posts} onRemove={onRemove} />;
-          case 'comments':
-            return <CommentsModal comments={comments} onRemove={onRemove} />;
+          case 'comments': {
+            const comments = extractRedditCommentsFromDOM();
+
+            return (
+              <CommentsModal
+                post={posts[0]}
+                comments={comments}
+                onRemove={onRemove}
+              />
+            );
+          }
           default:
             return null;
         }
