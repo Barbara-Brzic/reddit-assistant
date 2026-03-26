@@ -4,6 +4,8 @@ import { Badge } from '@/components/ui/badge';
 import { IPost } from '@/entrypoints/content/scripts/scrap.ts';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card } from '@/components/ui/card.tsx';
+import SearchInput from '@/entrypoints/content/common/SearchInput.tsx';
+import useGemini from '@/entrypoints/hooks/useGemini.tsx';
 
 export default function PostsModal({
   posts,
@@ -12,7 +14,7 @@ export default function PostsModal({
   posts: IPost[];
   onRemove: () => void;
 }>) {
-  const [loading, setLoading] = useState(false);
+  const { handleSearch, geminiResponse, loading } = useGemini();
 
   const handlePostClick = (post: IPost) => {
     if (post.link) {
@@ -26,7 +28,15 @@ export default function PostsModal({
         'min-w-130 max-h-170 rounded-md shadow-sm overflow-hidden bg-secondary p-2'
       }
     >
-      <Header title={'Posts'} count={posts?.length} onClose={onRemove} />
+      <Header
+        title={'Posts'}
+        count={geminiResponse?.length || posts?.length}
+        onClose={onRemove}
+      />
+      <SearchInput
+        handleSearch={(searchQuery) => handleSearch(searchQuery, posts)}
+      />
+
       <div className={'flex flex-col justify-center align-center w-full'}>
         {loading && (
           <div className={'flex justify-center items-center p-2'}>
@@ -36,7 +46,7 @@ export default function PostsModal({
 
         <ScrollArea className={'h-150 w-130'}>
           <div className={'flex flex-col gap-2 p-2'}>
-            {posts?.map((post) => (
+            {(geminiResponse?.length ? geminiResponse : posts)?.map((post) => (
               <Card
                 key={post.id}
                 className={
