@@ -22,7 +22,9 @@ export default function SearchInput({
           }
         }}
       />
-      <Button onClick={() => handleSearch(value)}>Search</Button>
+      <Button onClick={() => handleSearch(value)} className={'cursor-pointer'}>
+        Search
+      </Button>
     </Field>
   );
 }
