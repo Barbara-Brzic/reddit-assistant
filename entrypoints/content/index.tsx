@@ -48,6 +48,8 @@ const CreateUI = async (
             return <PostsModal onRemove={onRemove} />;
           case 'comments':
             return <CommentsModal onRemove={onRemove} />;
+          default:
+            return null;
         }
       });
     },
