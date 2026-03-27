@@ -30,17 +30,25 @@ export default function CommentsModal({
     >
       <MarkdownText markdown={geminiResponse} />
 
-      <ScrollArea className={'h-150'} style={{ width: '100%' }}>
-        <div className={'flex flex-col gap-2'}>
-          {comments?.map((comment) => (
-            <CommentCard
-              comment={comment}
-              handleCommentClick={handleCommentClick}
-              key={comment.id}
-            />
-          ))}
-        </div>
-      </ScrollArea>
+      <div className="mb-2">
+        <h3 className="text-sm font-semibold mb-2 px-2 text-muted-foreground">
+          Comments
+        </h3>
+        <ScrollArea
+          className={geminiResponse ? 'h-64' : 'h-96'}
+          style={{ width: '100%' }}
+        >
+          <div className={'flex flex-col gap-2'}>
+            {comments?.map((comment) => (
+              <CommentCard
+                comment={comment}
+                handleCommentClick={handleCommentClick}
+                key={comment.id}
+              />
+            ))}
+          </div>
+        </ScrollArea>
+      </div>
     </Modal>
   );
 }
