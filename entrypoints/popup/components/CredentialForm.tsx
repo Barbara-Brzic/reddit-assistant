@@ -59,7 +59,7 @@ export default function CredentialForm() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-6 min-w-125">
+    <div className="mx-auto p-6 w-110">
       <div className="mb-6">
         <h2 className="text-2xl font-bold mb-2">API Configuration</h2>
         <p className="text-muted-foreground">Enter API credentials</p>
@@ -120,7 +120,7 @@ export default function CredentialForm() {
           <Button
             variant={'default'}
             type="submit"
-            className="w-full cursor-pointer"
+            className="w-full cursor-pointer mt-3"
           >
             <Save className="mr-2 h-4 w-4" />
             Save
