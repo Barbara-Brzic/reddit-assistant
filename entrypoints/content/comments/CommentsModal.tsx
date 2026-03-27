@@ -10,10 +10,8 @@ export default function CommentsModal({
   comments,
   onRemove,
 }: Readonly<{ post: IPost; comments: IComment[]; onRemove: () => void }>) {
-  const { searchComments, geminiResponse, loading } = useCommentsSearch(
-    post,
-    comments
-  );
+  const { geminiResponse, loading, searchComments, resetGeminiResponse } =
+    useCommentsSearch(post, comments);
 
   const handleCommentClick = (comment: IComment) => {
     if (comment.permalink) {
@@ -28,7 +26,10 @@ export default function CommentsModal({
       onClose={onRemove}
       handleSearch={searchComments}
     >
-      <MarkdownText markdown={geminiResponse} />
+      <MarkdownText
+        markdown={geminiResponse}
+        handleCancel={resetGeminiResponse}
+      />
 
       <div className="mb-2">
         <h3 className="text-sm font-semibold mb-2 px-2 text-muted-foreground">

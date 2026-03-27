@@ -52,5 +52,7 @@ export default function useCommentsSearch(post: IPost, comments: IComment[]) {
     };
   };
 
-  return { searchComments, geminiResponse, loading };
+  const resetGeminiResponse = () => setGeminiResponse(null);
+
+  return { geminiResponse, loading, searchComments, resetGeminiResponse };
 }
