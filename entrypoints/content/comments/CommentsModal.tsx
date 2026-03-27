@@ -21,6 +21,7 @@ export default function CommentsModal({
 
   return (
     <Modal
+      title={'Comments'}
       headerCount={comments?.length}
       loading={loading}
       onClose={onRemove}

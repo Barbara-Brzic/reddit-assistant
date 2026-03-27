@@ -3,12 +3,14 @@ import SearchInput from '@/entrypoints/content/common/SearchInput.tsx';
 import { Spinner } from '@/components/ui/spinner.tsx';
 
 export default function Modal({
+  title,
   headerCount,
   loading,
   onClose,
   handleSearch,
   children,
 }: Readonly<{
+  title: string;
   headerCount: number;
   loading: boolean;
   onClose: () => void;
@@ -21,7 +23,7 @@ export default function Modal({
         'flex flex-col space-y-2 w-140 max-h-200 rounded-lg shadow-sm overflow-hidden bg-secondary p-4'
       }
     >
-      <ModalHeader title={'Posts'} count={headerCount} onClose={onClose} />
+      <ModalHeader title={title} count={headerCount} onClose={onClose} />
       <SearchInput handleSearch={handleSearch} />
 
       {loading && (

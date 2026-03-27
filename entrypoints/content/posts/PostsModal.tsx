@@ -15,6 +15,7 @@ export default function PostsModal({
 
   return (
     <Modal
+      title={'Posts'}
       headerCount={geminiResponse?.length || posts?.length}
       loading={loading}
       onClose={onRemove}
