@@ -24,15 +24,14 @@ export default function PostCard({ post }: Readonly<{ post: IPost }>) {
       )}
       <h2>{post.title}</h2>
       <p className={'text-sm text-muted-foreground'}>{post.description}</p>
-      <div>
-        <div className={'flex items-center gap-5'}>
-          <span className={'text-sm text-muted-foreground'}>
-            Score: {post.score}
-          </span>
-          <span className={'text-sm text-muted-foreground'}>
-            {post.comments} comments
-          </span>
-        </div>
+
+      <div className={'flex items-center gap-5 mt-2'}>
+        <span className={'text-sm text-muted-foreground'}>
+          Score: {post.score}
+        </span>
+        <span className={'text-sm text-muted-foreground'}>
+          {post.comments} comments
+        </span>
       </div>
     </Card>
   );
