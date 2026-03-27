@@ -38,15 +38,27 @@ export default function usePostsSearch() {
         {
           parts: [
             {
-              text: `
-          This is the prompt: ${searchQuery}
-          This is the dataset of posts in js array: '''${JSON.stringify(posts)}'''.
-          
-          Now based on this dataset, return the posts that match the prompt.
-          Use description, title, tag, score and comments fields of the post for matching.
-          Give me the list of posts in js array in the same format as the dataset.
-          Don't provide any extra text even if you failed to find any post, just return an empty array. 
-          `,
+              text: `You are a Reddit post filtering assistant. Filter posts based on the user's search criteria.
+
+                    **User Query:**
+                    ${searchQuery}
+                    
+                    **Posts Dataset:**
+                    \`\`\`json
+                    ${JSON.stringify(posts, null, 2)}
+                    \`\`\`
+                    
+                    **Task:**
+                    1. Analyze each post against the user query
+                    2. Match based on: title, description, tag, score, and comment count
+                    3. Consider semantic similarity, keywords, and relevance
+                    4. Return ONLY relevant posts that match the query
+                    
+                    **Output Requirements:**
+                    - Return a valid JSON array with the same structure as input
+                    - If no matches found, return: []
+                    - NO explanatory text, markdown code blocks, or additional commentary
+                    - Return ONLY the raw JSON array`,
             },
           ],
         },

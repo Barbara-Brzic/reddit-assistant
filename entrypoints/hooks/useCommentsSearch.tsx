@@ -38,13 +38,38 @@ export default function useCommentsSearch(post: IPost, comments: IComment[]) {
         {
           parts: [
             {
-              text: `
-          This is the prompt: ${searchQuery}
-          This is the dataset of comments in js array: '''${JSON.stringify(comments)}'''.
-          This is the post dataset: '''${JSON.stringify(post)}'''
-          
-          Now based on the post data, the comments data, and the user prompt, generate a response that directly answers the prompt.
-          `,
+              text: `You are a Reddit discussion analysis assistant. Analyze the post and its comments to answer the user's query.
+                    
+                    **User Query:**
+                    ${searchQuery}
+                    
+                    **Reddit Post:**
+                    \`\`\`json
+                    ${JSON.stringify(post, null, 2)}
+                    \`\`\`
+                    
+                    **Comments (${comments.length} total):**
+                    \`\`\`json
+                    ${JSON.stringify(comments, null, 2)}
+                    \`\`\`
+                    
+                    **Task:**
+                    1. Analyze the post content and context
+                    2. Review all comments for relevant insights
+                    3. Identify key themes, opinions, and patterns
+                    4. Consider comment scores to gauge community sentiment
+                    5. Provide a comprehensive answer to the user's query
+                    
+                    **Response Guidelines:**
+                    - Be concise and direct
+                    - Use markdown formatting for readability
+                    - Cite specific comments when relevant (mention author)
+                    - Summarize key points with bullet points when appropriate
+                    - **Primary focus**: Answer based on the post and comments
+                    - **Fallback**: If the comments don't contain enough information, use your general knowledge to answer the query
+                    - Clearly indicate when you're using external knowledge vs. comment-based insights
+
+                    Provide your analysis.`,
             },
           ],
         },
