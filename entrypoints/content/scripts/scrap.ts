@@ -1,11 +1,11 @@
 export interface IPost {
-  id: number;
+  id: string;
   title: string;
   link: string;
-  comments: string | null;
+  comments: number;
   tag: string | null;
   description: string | null;
-  score: string | null;
+  score: number;
 }
 
 export interface IComment {
@@ -13,7 +13,7 @@ export interface IComment {
   author: string;
   comment: string;
   permalink: string;
-  score: string;
+  score: number;
 }
 
 export function extractRedditPostsFromDOM(): IPost[] {
@@ -39,13 +39,13 @@ export function extractRedditPostsFromDOM(): IPost[] {
 
     if (title && fullLink) {
       postData.push({
-        id: key,
+        id: key.toString(),
         title,
         link: fullLink,
-        comments: commentCout,
+        comments: Number(commentCout),
         tag,
         description,
-        score,
+        score: Number(score),
       });
     }
   });
@@ -73,7 +73,7 @@ export function extractRedditCommentsFromDOM(): IComment[] {
         author,
         comment: commentContent,
         permalink,
-        score,
+        score: Number(score),
       });
     }
   });

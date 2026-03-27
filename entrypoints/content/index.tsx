@@ -1,13 +1,8 @@
 import '../popup/style.css';
 import React from 'react';
 import { CreateContentElement } from '@/entrypoints/content/common';
-import PostsModal from '@/entrypoints/content/posts/PostsModal.tsx';
 import { ContentScriptContext } from 'wxt/utils/content-script-context';
-import CommentsModal from '@/entrypoints/content/comments/CommentsModal.tsx';
-import {
-  extractRedditCommentsFromDOM,
-  extractRedditPostsFromDOM,
-} from '@/entrypoints/content/scripts/scrap.ts';
+import RedditDataLoader from '@/entrypoints/content/common/RedditDataLoader.tsx';
 
 export default defineContentScript({
   matches: ['*://*/*'],
@@ -47,25 +42,7 @@ const CreateUI = async (
           if (removeUi) removeUi();
         };
 
-        const posts = extractRedditPostsFromDOM();
-
-        switch (type) {
-          case 'posts':
-            return <PostsModal posts={posts} onRemove={onRemove} />;
-          case 'comments': {
-            const comments = extractRedditCommentsFromDOM();
-
-            return (
-              <CommentsModal
-                post={posts[0]}
-                comments={comments}
-                onRemove={onRemove}
-              />
-            );
-          }
-          default:
-            return null;
-        }
+        return <RedditDataLoader type={type} onRemove={onRemove} />;
       });
     },
     onRemove(root) {
