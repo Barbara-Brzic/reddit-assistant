@@ -20,7 +20,7 @@ export default function Modal({
   return (
     <div
       className={
-        'flex flex-col space-y-2 w-140 max-h-200 rounded-lg shadow-sm overflow-hidden bg-secondary p-4'
+        'flex flex-col space-y-2 w-150 max-h-200 rounded-lg shadow-sm overflow-hidden bg-secondary p-4'
       }
     >
       <ModalHeader title={title} count={headerCount} onClose={onClose} />
