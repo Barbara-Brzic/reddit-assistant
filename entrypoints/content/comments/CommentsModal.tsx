@@ -1,11 +1,9 @@
-import Header from '@/entrypoints/content/common/Header.tsx';
-import { Spinner } from '@/components/ui/spinner.tsx';
 import { IComment, IPost } from '@/entrypoints/content/scripts/scrap.ts';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
-import SearchInput from '@/entrypoints/content/common/SearchInput.tsx';
 import useCommentsSearch from '@/entrypoints/hooks/useCommentsSearch.tsx';
 import CommentCard from '@/entrypoints/content/comments/CommentCard.tsx';
 import MarkdownText from '@/entrypoints/content/comments/MarkdownText.tsx';
+import Modal from '@/entrypoints/content/common/Modal.tsx';
 
 export default function CommentsModal({
   post,
@@ -24,20 +22,12 @@ export default function CommentsModal({
   };
 
   return (
-    <div
-      className={
-        'flex flex-col space-y-2 max-h-180 w-140 rounded-lg shadow-sm overflow-hidden bg-secondary p-4'
-      }
+    <Modal
+      headerCount={comments?.length}
+      loading={loading}
+      onClose={onRemove}
+      handleSearch={searchComments}
     >
-      <Header title={'Comments'} count={comments?.length} onClose={onRemove} />
-      <SearchInput handleSearch={searchComments} />
-
-      {loading && (
-        <div className={'flex justify-center items-center p-2'}>
-          <Spinner />
-        </div>
-      )}
-
       <MarkdownText markdown={geminiResponse} />
 
       <ScrollArea className={'h-150'} style={{ width: '100%' }}>
@@ -51,6 +41,6 @@ export default function CommentsModal({
           ))}
         </div>
       </ScrollArea>
-    </div>
+    </Modal>
   );
 }

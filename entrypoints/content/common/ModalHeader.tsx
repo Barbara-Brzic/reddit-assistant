@@ -1,6 +1,6 @@
 import { X } from 'lucide-react';
 
-export default function Header({
+export default function ModalHeader({
   title,
   count,
   onClose,
