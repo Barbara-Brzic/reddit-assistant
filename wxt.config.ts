@@ -6,8 +6,8 @@ export default defineConfig({
   manifest: ({ manifestVersion }) => {
     return {
       manifest_version: manifestVersion,
-      name: 'WXT Example',
-      description: 'WXT Example',
+      name: 'Reddit Assistant',
+      description: 'Reddit Assistant',
       version: '1.0.0',
       permissions: [
         'storage',
