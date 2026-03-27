@@ -36,7 +36,7 @@ export default function CommentsModal({
           Comments
         </h3>
         <ScrollArea
-          className={geminiResponse ? 'h-64' : 'h-96'}
+          className={geminiResponse ? 'h-80' : 'h-130'}
           style={{ width: '100%' }}
         >
           <div className={'flex flex-col gap-2'}>
