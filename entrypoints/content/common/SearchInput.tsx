@@ -13,7 +13,7 @@ export default function SearchInput({
     <Field orientation="horizontal">
       <Input
         type="search"
-        placeholder="Search..."
+        placeholder="Ask Gemini to filter or analyze..."
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => {
