@@ -12,7 +12,7 @@ export default function CommentCard({
   return (
     <Card
       className={
-        'flex flex-col p-3 bg-card shadow-sm rounded-md hover:bg-accent cursor-pointer'
+        'flex flex-col p-3 bg-card shadow-sm rounded-lg hover:bg-card-hover cursor-pointer'
       }
       style={{ maxWidth: '100%', wordBreak: 'break-word' }}
       onClick={() => handleCommentClick(comment)}

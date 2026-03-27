@@ -7,7 +7,7 @@ export default function MarkdownText({
 
   return (
     <div
-      className={'overflow-y-auto p-4 max-h-50 mb-3'}
+      className={'overflow-y-auto p-4 max-h-50 mb-3 text-primary'}
       style={{
         maxWidth: '100%',
         wordBreak: 'break-word',

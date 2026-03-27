@@ -11,11 +11,11 @@ export default function Header({
 }>) {
   return (
     <div className={'flex flex-row justify-between items-center mb-4'}>
-      <h1 className={'text-lg font-bold'}>
+      <h1 className={'text-lg font-bold text-foreground'}>
         {title}
         {count > 0 && <span className={'ml-2'}>({count})</span>}
       </h1>
-      <X onClick={onClose} className={'cursor-pointer'} />
+      <X onClick={onClose} className={'cursor-pointer text-foreground'} />
     </div>
   );
 }

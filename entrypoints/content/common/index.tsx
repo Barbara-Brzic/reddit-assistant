@@ -24,8 +24,9 @@ export const CreateContentElement = (
     zIndex: '10000',
   });
 
-  // Create app container
+  // Create app container with dark mode
   const app = document.createElement('div');
+  app.className = 'dark';
   backdrop.appendChild(app);
   uiContainer.appendChild(backdrop);
 

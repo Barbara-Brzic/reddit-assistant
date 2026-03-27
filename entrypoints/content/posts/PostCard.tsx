@@ -13,7 +13,7 @@ export default function PostCard({ post }: Readonly<{ post: IPost }>) {
     <Card
       key={post.id}
       className={
-        'flex flex-col px-4 py-2 bg-card shadow-sm rounded-md hover:bg-accent cursor-pointer'
+        'flex flex-col px-4 py-2 bg-card drop-shadow-md rounded-lg hover:bg-card-hover cursor-pointer'
       }
       onClick={() => handlePostClick(post)}
     >

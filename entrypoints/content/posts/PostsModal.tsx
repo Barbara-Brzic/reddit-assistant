@@ -18,7 +18,7 @@ export default function PostsModal({
   return (
     <div
       className={
-        'min-w-130 max-h-170 rounded-md shadow-sm overflow-hidden bg-secondary p-4'
+        'flex flex-col space-y-2 w-140 max-h-170 rounded-lg shadow-sm overflow-hidden bg-secondary p-4'
       }
     >
       <Header
@@ -36,7 +36,7 @@ export default function PostsModal({
         </div>
       )}
 
-      <ScrollArea className={'h-150 w-130 mt-2'}>
+      <ScrollArea className={'h-150'} style={{ width: '100%' }}>
         <div className={'flex flex-col gap-2'}>
           {(geminiResponse?.length ? geminiResponse : posts)?.map((post) => (
             <PostCard post={post} key={post.id} />

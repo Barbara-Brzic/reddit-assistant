@@ -21,6 +21,7 @@ export default function SearchInput({
             handleSearch(value);
           }
         }}
+        className={'text-foreground ring-ring'}
       />
       <Button onClick={() => handleSearch(value)} className={'cursor-pointer'}>
         Search

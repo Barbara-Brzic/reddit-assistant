@@ -15,6 +15,7 @@
   --color-muted-foreground: hsl(0 0% 45.1%);
   --color-accent: hsl(0 0% 96.1%);
   --color-accent-foreground: hsl(0 0% 9%);
+  --color-card-hover: hsl(0 0% 90%);
   --color-destructive: hsl(0 84.2% 60.2%);
   --color-destructive-foreground: hsl(0 0% 98%);
   --color-border: hsl(0 0% 89.8%);
@@ -64,6 +65,7 @@
     --color-muted-foreground: hsl(0 0% 63.9%);
     --color-accent: hsl(0 0% 14.9%);
     --color-accent-foreground: hsl(0 0% 98%);
+    --color-card-hover: hsl(0 0% 22%);
     --color-destructive: hsl(0 62.8% 30.6%);
     --color-destructive-foreground: hsl(0 0% 98%);
     --color-border: hsl(0 0% 14.9%);
@@ -84,6 +86,7 @@
     --muted-foreground: 0 0% 63.9%;
     --accent: 0 0% 14.9%;
     --accent-foreground: 0 0% 98%;
+    --card-hover: 0 0% 18%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 14.9%;

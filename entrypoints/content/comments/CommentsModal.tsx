@@ -26,7 +26,7 @@ export default function CommentsModal({
   return (
     <div
       className={
-        'rounded-md shadow-sm overflow-hidden bg-secondary p-4 max-h-180 w-130  flex flex-col space-y-2'
+        'flex flex-col space-y-2 max-h-180 w-140 rounded-lg shadow-sm overflow-hidden bg-secondary p-4'
       }
     >
       <Header title={'Comments'} count={comments?.length} onClose={onRemove} />
