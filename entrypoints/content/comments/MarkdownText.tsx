@@ -19,7 +19,7 @@ export default function MarkdownText({
       </h3>
       <ScrollArea className="h-48" style={{ width: '100%' }}>
         <div
-          className="p-2 text-foreground text-sm"
+          className="p-2 text-foreground text-sm pr-4"
           style={{
             maxWidth: '100%',
             wordBreak: 'break-word',
