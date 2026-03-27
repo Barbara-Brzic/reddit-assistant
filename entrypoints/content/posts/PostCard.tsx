@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge.tsx';
 import { Card } from '@/components/ui/card.tsx';
 import { IPost } from '@/entrypoints/content/scripts/scrap.ts';
+import { ArrowBigUp, MessageCircle } from 'lucide-react';
 
 export default function PostCard({ post }: Readonly<{ post: IPost }>) {
   const handlePostClick = (post: IPost) => {
@@ -25,13 +26,25 @@ export default function PostCard({ post }: Readonly<{ post: IPost }>) {
       <h2>{post.title}</h2>
       <p className={'text-sm text-muted-foreground'}>{post.description}</p>
 
-      <div className={'flex items-center gap-5 mt-2'}>
-        <span className={'text-sm text-muted-foreground'}>
-          Score: {post.score}
-        </span>
-        <span className={'text-sm text-muted-foreground'}>
-          {post.comments} comments
-        </span>
+      <div className={'flex items-center gap-2 mt-2'}>
+        <Badge
+          variant={'outline'}
+          className={
+            'flex items-center gap-1 text-primary/80 border-primary/40'
+          }
+        >
+          <ArrowBigUp className={'h-3 w-3'} />
+          {post.score}
+        </Badge>
+        <Badge
+          variant={'outline'}
+          className={
+            'flex items-center gap-1 text-primary/80 border-primary/40'
+          }
+        >
+          <MessageCircle className={'h-3 w-3'} />
+          {post.comments}
+        </Badge>
       </div>
     </Card>
   );

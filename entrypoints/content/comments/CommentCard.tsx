@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge.tsx';
 import { Card } from '@/components/ui/card.tsx';
 import { IComment } from '@/entrypoints/content/scripts/scrap.ts';
+import { ArrowBigUp } from 'lucide-react';
 
 export default function CommentCard({
   comment,
@@ -28,9 +29,15 @@ export default function CommentCard({
       >
         {comment.comment}
       </h2>
-      <span className={'text-sm text-muted-foreground mt-3'}>
-        Score: {comment.score}
-      </span>
+      <Badge
+        variant={'outline'}
+        className={
+          'flex items-center gap-1 text-primary/80 border-primary/40 mt-3 w-fit'
+        }
+      >
+        <ArrowBigUp className={'h-3 w-3'} />
+        {comment.score}
+      </Badge>
     </Card>
   );
 }
