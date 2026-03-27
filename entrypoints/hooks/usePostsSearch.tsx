@@ -24,7 +24,7 @@ export default function usePostsSearch() {
       });
       setGeminiResponse(extractGeminiResponse(response));
     } catch (error) {
-      toast.error('Failed to fetch data from Gemini');
+      toast.error('Failed to fetch data from Gemini. Check your API key');
       console.error('Error fetching data:', error);
       setGeminiResponse([]);
     } finally {
