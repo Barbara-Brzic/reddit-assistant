@@ -1,6 +1,6 @@
 import { Badge } from '@/components/ui/badge.tsx';
 import { Card } from '@/components/ui/card.tsx';
-import { IPost } from '@/entrypoints/content/scripts/scrap.ts';
+import { IPost } from '@/entrypoints/content/scripts/utils.ts';
 import { ArrowBigUp, MessageCircle } from 'lucide-react';
 
 export default function PostCard({ post }: Readonly<{ post: IPost }>) {

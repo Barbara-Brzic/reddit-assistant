@@ -8,7 +8,7 @@ import React from 'react';
 import { Spinner } from '@/components/ui/spinner.tsx';
 import PostsModal from '@/entrypoints/content/posts/PostsModal.tsx';
 import CommentsModal from '@/entrypoints/content/comments/CommentsModal.tsx';
-import { IComment, IPost } from '@/entrypoints/content/scripts/scrap.ts';
+import { IComment, IPost } from '@/entrypoints/content/scripts/utils.ts';
 
 export default function RedditDataLoader({
   type,

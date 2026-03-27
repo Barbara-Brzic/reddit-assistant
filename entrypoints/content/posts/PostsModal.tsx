@@ -1,4 +1,4 @@
-import { IPost } from '@/entrypoints/content/scripts/scrap.ts';
+import { IPost } from '@/entrypoints/content/scripts/utils.ts';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import usePostsSearch from '@/entrypoints/hooks/usePostsSearch.tsx';
 import PostCard from '@/entrypoints/content/posts/PostCard.tsx';

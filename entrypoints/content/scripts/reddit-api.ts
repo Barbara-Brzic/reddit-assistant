@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IPost, IComment } from './scrap';
+import { IPost, IComment } from './utils.ts';
 
 const REDDIT_API_BASE = 'https://www.reddit.com';
 

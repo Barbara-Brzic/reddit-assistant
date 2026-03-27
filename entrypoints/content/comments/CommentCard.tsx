@@ -1,6 +1,6 @@
 import { Badge } from '@/components/ui/badge.tsx';
 import { Card } from '@/components/ui/card.tsx';
-import { IComment } from '@/entrypoints/content/scripts/scrap.ts';
+import { IComment } from '@/entrypoints/content/scripts/utils.ts';
 import { ArrowBigUp } from 'lucide-react';
 
 export default function CommentCard({
