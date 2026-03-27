@@ -60,5 +60,7 @@ export default function usePostsSearch() {
     return extractJsonListFromMarkdown(data);
   };
 
-  return { searchPosts, geminiResponse, loading };
+  const resetGeminiResponse = () => setGeminiResponse([]);
+
+  return { geminiResponse, loading, searchPosts, resetGeminiResponse };
 }
