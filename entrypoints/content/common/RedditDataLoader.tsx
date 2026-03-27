@@ -37,6 +37,7 @@ export default function RedditDataLoader({
         }
       } catch (error) {
         console.error('Error loading Reddit data:', error);
+
         setData(null);
       } finally {
         setLoading(false);
