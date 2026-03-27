@@ -4,11 +4,18 @@ import {
   getCurrentPostId,
   getCurrentSubreddit,
 } from '@/entrypoints/content/scripts/reddit-api.ts';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Spinner } from '@/components/ui/spinner.tsx';
 import PostsModal from '@/entrypoints/content/posts/PostsModal.tsx';
 import CommentsModal from '@/entrypoints/content/comments/CommentsModal.tsx';
 import { IComment, IPost } from '@/entrypoints/content/scripts/utils.ts';
+import StatusMessage from '@/entrypoints/content/common/StatusMessage.tsx';
+
+interface RedditData {
+  posts: IPost[];
+  comments: IComment[];
+  message?: string;
+}
 
 export default function RedditDataLoader({
   type,
@@ -17,44 +24,53 @@ export default function RedditDataLoader({
   type: 'posts' | 'comments';
   onRemove: () => void;
 }>) {
-  const [data, setData] = useState<{
-    posts: IPost[];
-    comments: IComment[];
-    message?: string;
-  } | null>(null);
+  const [data, setData] = useState<RedditData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const subreddit = getCurrentSubreddit();
-
-      if (type === 'posts') {
-        // Use 'popular' as default if not on a specific subreddit
-        const targetSubreddit = subreddit || 'popular';
-        const posts = await fetchSubredditPosts(targetSubreddit, 50);
-        setData({ posts, comments: [] });
-      } else if (type === 'comments') {
-        const postId = getCurrentPostId();
-        if (!subreddit || !postId) {
-          setData({
-            posts: [],
-            comments: [],
-            message: 'Please navigate to a Reddit post to view comments',
-          });
-          setLoading(false);
-          return;
+    async function loadRedditData() {
+      try {
+        if (type === 'posts') {
+          await loadPosts();
+        } else {
+          await loadComments();
         }
-        if (postId) {
-          const result = await fetchPostComments(subreddit, postId);
-          if (result) {
-            setData({ posts: [result.post], comments: result.comments });
-          }
-        }
+      } catch (error) {
+        console.error('Error loading Reddit data:', error);
+        setData(null);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
-    };
+    }
 
-    fetchData();
+    async function loadPosts() {
+      const subreddit = getCurrentSubreddit() || 'popular';
+      const posts = await fetchSubredditPosts(subreddit, 50);
+      setData({ posts, comments: [] });
+    }
+
+    async function loadComments() {
+      const subreddit = getCurrentSubreddit();
+      const postId = getCurrentPostId();
+
+      if (!subreddit || !postId) {
+        setData({
+          posts: [],
+          comments: [],
+          message: 'Please navigate to a Reddit post to view comments',
+        });
+        return;
+      }
+
+      const result = await fetchPostComments(subreddit, postId);
+      if (result) {
+        setData({ posts: [result.post], comments: result.comments });
+      } else {
+        setData(null);
+      }
+    }
+
+    loadRedditData();
   }, [type]);
 
   if (loading) {
@@ -67,33 +83,21 @@ export default function RedditDataLoader({
 
   if (!data) {
     return (
-      <div className="flex items-center justify-center p-8 bg-secondary rounded-lg">
-        <p className="text-destructive">Failed to fetch Reddit data</p>
-      </div>
+      <StatusMessage message="Failed to fetch Reddit data" variant="error" />
     );
   }
 
   if (data.message) {
-    return (
-      <div className="flex items-center justify-center p-8 bg-secondary rounded-lg">
-        <p className="text-primary">{data.message}</p>
-      </div>
-    );
+    return <StatusMessage message={data.message} />;
   }
 
-  if (type === 'posts') {
-    return <PostsModal posts={data.posts} onRemove={onRemove} />;
-  }
-
-  if (type === 'comments') {
-    return (
-      <CommentsModal
-        post={data.posts[0]}
-        comments={data.comments}
-        onRemove={onRemove}
-      />
-    );
-  }
-
-  return null;
+  return type === 'posts' ? (
+    <PostsModal posts={data.posts} onRemove={onRemove} />
+  ) : (
+    <CommentsModal
+      post={data.posts[0]}
+      comments={data.comments}
+      onRemove={onRemove}
+    />
+  );
 }
