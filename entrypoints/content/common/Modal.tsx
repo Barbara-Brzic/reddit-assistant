@@ -29,7 +29,7 @@ export default function Modal({
       <ModalHeader title={title} count={headerCount} onClose={onClose} />
       <div className={'flex items-center gap-2'}>
         <SearchInput handleSearch={handleSearch}>
-          <LimitSelector showHigherLimits={type === 'comments'} />
+          <LimitSelector type={type} showHigherLimits={type === 'comments'} />
         </SearchInput>
       </div>
 

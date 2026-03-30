@@ -10,11 +10,13 @@ import {
 import useQueryLimit from '@/entrypoints/hooks/useQueryLimit.tsx';
 
 export default function LimitSelector({
+  type,
   showHigherLimits,
 }: Readonly<{
+  type: 'posts' | 'comments';
   showHigherLimits: boolean;
 }>) {
-  const { limit, updateLimit } = useQueryLimit();
+  const { limit, updateLimit } = useQueryLimit(type);
 
   const handleSelect = (value: string) => {
     updateLimit(Number(value));

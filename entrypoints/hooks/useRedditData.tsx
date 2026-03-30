@@ -17,7 +17,7 @@ interface RedditData {
 export const useRedditData = (type: 'posts' | 'comments') => {
   const [data, setData] = useState<RedditData | null>(null);
   const [loading, setLoading] = useState(true);
-  const { limit } = useQueryLimit();
+  const { limit } = useQueryLimit(type);
 
   useEffect(() => {
     async function loadRedditData() {
