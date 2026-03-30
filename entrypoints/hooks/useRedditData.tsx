@@ -35,8 +35,21 @@ export const useRedditData = (type: 'posts' | 'comments') => {
     }
 
     async function loadPosts() {
-      const subreddit = getCurrentSubreddit() || 'popular';
-      const posts = await fetchSubredditPosts(subreddit, 50);
+      const subreddit = getCurrentSubreddit();
+      const postId = getCurrentPostId();
+
+      if (subreddit && postId) {
+        const result = await fetchPostComments(subreddit, postId, 1);
+        if (result) {
+          setData({ posts: [result.post], comments: [] });
+        } else {
+          setData(null);
+        }
+        return;
+      }
+
+      const targetSubreddit = subreddit || 'popular';
+      const posts = await fetchSubredditPosts(targetSubreddit, 50);
       setData({ posts, comments: [] });
     }
 
