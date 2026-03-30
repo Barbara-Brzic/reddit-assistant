@@ -4,7 +4,8 @@ import { Toaster } from 'react-hot-toast';
 
 export const CreateContentElement = (
   uiContainer: HTMLElement,
-  callback: (root: ReactDOM.Root) => React.ReactNode
+  callback: (root: ReactDOM.Root) => React.ReactNode,
+  onRemove?: () => void
 ): ReactDOM.Root => {
   // Clear container
   uiContainer.innerHTML = '';
@@ -24,9 +25,20 @@ export const CreateContentElement = (
     zIndex: '10000',
   });
 
+  // Close modal when clicking backdrop
+  backdrop.addEventListener('click', () => {
+    if (onRemove) onRemove();
+  });
+
   // Create app container with dark mode
   const app = document.createElement('div');
   app.className = 'dark';
+
+  // Prevent clicks on modal content from closing it
+  app.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+
   backdrop.appendChild(app);
   uiContainer.appendChild(backdrop);
 

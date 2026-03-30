@@ -38,13 +38,17 @@ const CreateUI = async (
     position: 'inline',
     anchor: 'body',
     onMount: (uiContainer) => {
-      return CreateContentElement(uiContainer, () => {
-        const onRemove = () => {
-          if (removeUi) removeUi();
-        };
+      const onRemove = () => {
+        if (removeUi) removeUi();
+      };
 
-        return <RedditDataLoader type={type} onRemove={onRemove} />;
-      });
+      return CreateContentElement(
+        uiContainer,
+        () => {
+          return <RedditDataLoader type={type} onRemove={onRemove} />;
+        },
+        onRemove
+      );
     },
     onRemove(root) {
       root?.unmount();
