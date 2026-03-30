@@ -3,12 +3,12 @@ export default defineBackground({
     chrome.runtime.onInstalled.addListener(() => {
       chrome.contextMenus.create({
         id: 'post',
-        title: 'Posts Insights',
+        title: 'Filter Posts',
         contexts: ['all'],
       });
       chrome.contextMenus.create({
         id: 'comment',
-        title: 'Comment Insights',
+        title: 'Analyze Comments',
         contexts: ['all'],
       });
     });
