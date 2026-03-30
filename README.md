@@ -1,10 +1,12 @@
 # Reddit Assistant - WXT + React + Gemini API
 
-A web extension that enhances Reddit browsing with AI-powered post filtering and comment analysis using Google's Gemini API.
+A **web extension** that enhances Reddit browsing with **AI-powered post filtering and comment analysis** using Google's Gemini API.
 
 ## About
 
 This extension adds context menu options to Reddit pages, allowing users to quickly filter posts or analyze comment threads using natural language queries. It provides an intuitive interface for exploring Reddit content with adjustable limits and AI-powered insights.
+
+The extension uses Reddit's public JSON API endpoints, requiring no Reddit authentication or API keys to fetch posts and comments.
 
 ## Technologies
 
@@ -29,7 +31,8 @@ This extension adds context menu options to Reddit pages, allowing users to quic
 ### Prerequisites
 
 - Node.js and pnpm installed
-- Google Gemini API key
+- Google Gemini API key (obtain from [Google AI Studio](https://aistudio.google.com/apikey))
+- Chrome, Edge, or other Chromium-based browser
 
 ### Installation
 
@@ -45,9 +48,10 @@ This extension adds context menu options to Reddit pages, allowing users to quic
    ```
 
 4. Load the extension in your browser:
-   - Chrome: Navigate to `chrome://extensions/`
+   - **Chrome/Edge**: Navigate to `chrome://extensions/` or `edge://extensions/`
    - Enable "Developer mode"
    - Click "Load unpacked" and select the `.output/chrome-mv3` directory
+   - Works on any Chromium-based browser
 
 ## Configuration
 
@@ -62,7 +66,7 @@ This extension adds context menu options to Reddit pages, allowing users to quic
 
 1. Navigate to any Reddit page (home, subreddit, or specific post)
 2. Right-click anywhere on the page
-3. Select "Reddit Assistant" > "Filter Posts"
+3. Select **"Reddit Assistant"** > **"Filter Posts"**
 4. Use the search input to ask Gemini to filter posts (e.g., "Show posts about technology")
 5. Adjust the limit selector to control how many posts to fetch
 
@@ -70,6 +74,21 @@ This extension adds context menu options to Reddit pages, allowing users to quic
 
 1. Navigate to a Reddit post page
 2. Right-click anywhere on the page
-3. Select "Reddit Assistant" > "Analyze Comments"
+3. Select **"Reddit Assistant"** > **"Analyze Comments"**
 4. Use the search input to ask questions about the comments (e.g., "Summarize the main opinions")
 5. Adjust the limit selector to control how many comments to fetch
+
+## Limitations
+
+- Reddit's public API has rate limits that may affect data fetching for large numbers of requests
+- The extension requires a valid Gemini API key, which may have usage quotas depending on your account tier
+- Extremely large comment threads may take longer to process or hit API limits
+- The extension currently supports Chromium-based browsers only
+
+## Building for Production
+
+```bash
+pnpm build
+```
+
+The built extension will be in the `.output/chrome-mv3` directory.
