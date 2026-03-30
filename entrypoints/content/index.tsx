@@ -34,10 +34,11 @@ const CreateUI = async (
   let removeUi: (() => void) | null = null;
 
   const ui = await createShadowRootUi(ctx, {
-    name: 'post-element',
-    position: 'overlay',
-    onMount: (uiContainer, shadow, shadowHost) => {
-      return CreateContentElement(uiContainer, (root) => {
+    name: 'reddit-assistant-ui',
+    position: 'inline',
+    anchor: 'body',
+    onMount: (uiContainer) => {
+      return CreateContentElement(uiContainer, () => {
         const onRemove = () => {
           if (removeUi) removeUi();
         };
