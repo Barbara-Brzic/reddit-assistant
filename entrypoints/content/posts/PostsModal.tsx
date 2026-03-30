@@ -19,6 +19,7 @@ export default function PostsModal({
     <Modal
       title={'Posts'}
       headerCount={geminiResponse?.length || posts?.length}
+      type={'posts'}
       loading={loading}
       onClose={onRemove}
       handleSearch={(searchQuery) => searchPosts(searchQuery, posts)}

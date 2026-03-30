@@ -6,6 +6,7 @@ import {
   getCurrentSubreddit,
 } from '@/entrypoints/content/scripts/reddit-api.ts';
 import { IComment, IPost } from '@/entrypoints/content/scripts/utils.ts';
+import useQueryLimit from '@/entrypoints/hooks/useQueryLimit.tsx';
 
 interface RedditData {
   posts: IPost[];
@@ -16,14 +17,15 @@ interface RedditData {
 export const useRedditData = (type: 'posts' | 'comments') => {
   const [data, setData] = useState<RedditData | null>(null);
   const [loading, setLoading] = useState(true);
+  const { limit } = useQueryLimit();
 
   useEffect(() => {
     async function loadRedditData() {
       try {
         if (type === 'posts') {
-          await loadPosts();
+          await loadPosts(limit);
         } else {
-          await loadComments();
+          await loadComments(limit);
         }
       } catch (error) {
         console.error('Error loading Reddit data:', error);
@@ -34,7 +36,7 @@ export const useRedditData = (type: 'posts' | 'comments') => {
       }
     }
 
-    async function loadPosts() {
+    async function loadPosts(limit: number) {
       const subreddit = getCurrentSubreddit();
       const postId = getCurrentPostId();
 
@@ -49,11 +51,11 @@ export const useRedditData = (type: 'posts' | 'comments') => {
       }
 
       const targetSubreddit = subreddit || 'popular';
-      const posts = await fetchSubredditPosts(targetSubreddit, 50);
+      const posts = await fetchSubredditPosts(targetSubreddit, limit);
       setData({ posts, comments: [] });
     }
 
-    async function loadComments() {
+    async function loadComments(limit: number) {
       const subreddit = getCurrentSubreddit();
       const postId = getCurrentPostId();
 
@@ -66,7 +68,7 @@ export const useRedditData = (type: 'posts' | 'comments') => {
         return;
       }
 
-      const result = await fetchPostComments(subreddit, postId);
+      const result = await fetchPostComments(subreddit, postId, limit);
       if (result) {
         setData({ posts: [result.post], comments: result.comments });
       } else {
@@ -75,7 +77,7 @@ export const useRedditData = (type: 'posts' | 'comments') => {
     }
 
     loadRedditData();
-  }, [type]);
+  }, [type, limit]);
 
   return { data, loading };
 };

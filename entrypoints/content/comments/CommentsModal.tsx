@@ -23,6 +23,7 @@ export default function CommentsModal({
     <Modal
       title={'Comments'}
       headerCount={comments?.length}
+      type={'comments'}
       loading={loading}
       onClose={onRemove}
       handleSearch={searchComments}

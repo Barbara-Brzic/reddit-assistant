@@ -1,10 +1,12 @@
 import ModalHeader from '@/entrypoints/content/common/ModalHeader.tsx';
 import SearchInput from '@/entrypoints/content/common/SearchInput.tsx';
 import { Spinner } from '@/components/ui/spinner.tsx';
+import LimitSelector from '@/entrypoints/content/common/LimitSelector.tsx';
 
 export default function Modal({
   title,
   headerCount,
+  type,
   loading,
   onClose,
   handleSearch,
@@ -12,6 +14,7 @@ export default function Modal({
 }: Readonly<{
   title: string;
   headerCount: number;
+  type: 'posts' | 'comments';
   loading: boolean;
   onClose: () => void;
   handleSearch: (searchQuery: string) => void;
@@ -24,7 +27,10 @@ export default function Modal({
       }
     >
       <ModalHeader title={title} count={headerCount} onClose={onClose} />
-      <SearchInput handleSearch={handleSearch} />
+      <div className={'flex items-center gap-2'}>
+        <SearchInput handleSearch={handleSearch} />
+        <LimitSelector showHigherLimits={type === 'comments'} />
+      </div>
 
       {loading && (
         <div className={'flex justify-center items-center p-2'}>
