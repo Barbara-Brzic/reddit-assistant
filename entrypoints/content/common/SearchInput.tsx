@@ -4,8 +4,10 @@ import { Button } from '@/components/ui/button.tsx';
 
 export default function SearchInput({
   handleSearch,
+  children,
 }: Readonly<{
   handleSearch: (searchQuery: string) => void;
+  children?: React.ReactNode;
 }>) {
   const [value, setValue] = useState('');
 
@@ -23,6 +25,7 @@ export default function SearchInput({
         }}
         className={'text-foreground ring-ring'}
       />
+      {children}
       <Button onClick={() => handleSearch(value)} className={'cursor-pointer'}>
         Search
       </Button>

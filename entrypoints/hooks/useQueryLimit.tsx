@@ -25,6 +25,10 @@ export default function useQueryLimit() {
     ) => {
       if (areaName === 'local' && changes.limit) {
         const newLimit = (changes.limit.newValue as number) ?? DEFAULT_LIMIT;
+        if (newLimit <= 1) {
+          setLimit(10);
+          return;
+        }
         setLimit(newLimit);
       }
     };
