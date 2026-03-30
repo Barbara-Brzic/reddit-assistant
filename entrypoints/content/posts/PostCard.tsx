@@ -16,6 +16,7 @@ export default function PostCard({ post }: Readonly<{ post: IPost }>) {
       className={
         'flex flex-col px-4 py-2 bg-card drop-shadow-md rounded-lg hover:bg-card-hover cursor-pointer'
       }
+      style={{ maxWidth: '100%', wordBreak: 'break-word' }}
       onClick={() => handlePostClick(post)}
     >
       {post.tag && (
