@@ -5,17 +5,19 @@ import CommentCard from '@/entrypoints/content/comments/CommentCard.tsx';
 import MarkdownText from '@/entrypoints/content/comments/MarkdownText.tsx';
 import Modal from '@/entrypoints/content/common/Modal.tsx';
 
+interface CommentsModalProps {
+  readonly post: IPost;
+  readonly comments: IComment[];
+  readonly onRemove: () => void;
+  readonly isRefetching?: boolean;
+}
+
 export default function CommentsModal({
   post,
   comments,
   onRemove,
   isRefetching,
-}: Readonly<{
-  post: IPost;
-  comments: IComment[];
-  onRemove: () => void;
-  isRefetching?: boolean;
-}>) {
+}: CommentsModalProps) {
   const { geminiResponse, loading, searchComments, resetGeminiResponse } =
     useCommentsSearch(post, comments);
 

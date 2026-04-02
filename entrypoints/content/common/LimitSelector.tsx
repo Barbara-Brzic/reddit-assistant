@@ -9,13 +9,15 @@ import {
 } from '@/components/ui/select.tsx';
 import useQueryLimit from '@/entrypoints/hooks/useQueryLimit.tsx';
 
+interface LimitSelectorProps {
+  readonly type: 'posts' | 'comments';
+  readonly showHigherLimits: boolean;
+}
+
 export default function LimitSelector({
   type,
   showHigherLimits,
-}: Readonly<{
-  type: 'posts' | 'comments';
-  showHigherLimits: boolean;
-}>) {
+}: LimitSelectorProps) {
   const { limit, updateLimit } = useQueryLimit(type);
 
   const handleSelect = (value: string) => {

@@ -1,16 +1,18 @@
 import { X, GripVertical } from 'lucide-react';
 
+interface ModalHeaderProps {
+  readonly title: string;
+  readonly count: number;
+  readonly onClose: () => void;
+  readonly onDragStart?: (e: React.MouseEvent) => void;
+}
+
 export default function ModalHeader({
   title,
   count,
   onClose,
   onDragStart,
-}: Readonly<{
-  title: string;
-  count: number;
-  onClose: () => void;
-  onDragStart?: (e: React.MouseEvent) => void;
-}>) {
+}: ModalHeaderProps) {
   return (
     <div className={'flex flex-row justify-between items-center mb-4'}>
       <div className={'flex items-center gap-2'}>

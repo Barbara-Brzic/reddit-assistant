@@ -4,13 +4,15 @@ import CommentsModal from '@/entrypoints/content/comments/CommentsModal.tsx';
 import StatusMessage from '@/entrypoints/content/common/StatusMessage.tsx';
 import { useRedditData } from '@/entrypoints/hooks/useRedditData.tsx';
 
+interface RedditDataLoaderProps {
+  readonly type: 'posts' | 'comments';
+  readonly onRemove: () => void;
+}
+
 export default function RedditDataLoader({
   type,
   onRemove,
-}: Readonly<{
-  type: 'posts' | 'comments';
-  onRemove: () => void;
-}>) {
+}: RedditDataLoaderProps) {
   const { data, loading, isRefetching } = useRedditData(type);
 
   if (loading) {

@@ -2,10 +2,15 @@ import Markdown from 'react-markdown';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { X } from 'lucide-react';
 
+interface MarkdownTextProps {
+  readonly markdown: string | null;
+  readonly handleCancel: () => void;
+}
+
 export default function MarkdownText({
   markdown,
   handleCancel,
-}: Readonly<{ markdown: string | null; handleCancel: () => void }>) {
+}: MarkdownTextProps) {
   if (!markdown) return null;
 
   return (

@@ -3,7 +3,18 @@ import SearchInput from '@/entrypoints/content/common/SearchInput.tsx';
 import { Spinner } from '@/components/ui/spinner.tsx';
 import LimitSelector from '@/entrypoints/content/common/LimitSelector.tsx';
 import { useDraggable } from '@/entrypoints/hooks/useDraggable.tsx';
-import { useState } from 'react';
+import { useState, ReactNode } from 'react';
+
+interface ModalProps {
+  readonly title: string;
+  readonly headerCount: number;
+  readonly type: 'posts' | 'comments';
+  readonly loading: boolean;
+  readonly isRefetching?: boolean;
+  readonly onClose: () => void;
+  readonly handleSearch: (searchQuery: string) => void;
+  readonly children: ReactNode;
+}
 
 export default function Modal({
   title,
@@ -14,16 +25,7 @@ export default function Modal({
   onClose,
   handleSearch,
   children,
-}: Readonly<{
-  title: string;
-  headerCount: number;
-  type: 'posts' | 'comments';
-  loading: boolean;
-  isRefetching?: boolean;
-  onClose: () => void;
-  handleSearch: (searchQuery: string) => void;
-  children: React.ReactNode;
-}>) {
+}: ModalProps) {
   const { handleMouseDown, position } = useDraggable();
   const [isClosing, setIsClosing] = useState(false);
 

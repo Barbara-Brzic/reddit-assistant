@@ -1,14 +1,17 @@
 import { Field } from '@/components/ui/field.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Button } from '@/components/ui/button.tsx';
+import { useState, ReactNode } from 'react';
+
+interface SearchInputProps {
+  readonly handleSearch: (searchQuery: string) => void;
+  readonly children?: ReactNode;
+}
 
 export default function SearchInput({
   handleSearch,
   children,
-}: Readonly<{
-  handleSearch: (searchQuery: string) => void;
-  children?: React.ReactNode;
-}>) {
+}: SearchInputProps) {
   const [value, setValue] = useState('');
 
   return (

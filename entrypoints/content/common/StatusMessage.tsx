@@ -1,12 +1,12 @@
-import React from 'react';
+interface StatusMessageProps {
+  readonly message: string;
+  readonly variant?: 'default' | 'error';
+}
 
 export default function StatusMessage({
   message,
   variant = 'default',
-}: Readonly<{
-  message: string;
-  variant?: 'default' | 'error';
-}>) {
+}: StatusMessageProps) {
   const textColor = variant === 'error' ? 'text-destructive' : 'text-primary';
   return (
     <div className="flex items-center justify-center p-8 bg-secondary rounded-lg">

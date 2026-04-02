@@ -3,7 +3,11 @@ import { Card } from '@/components/ui/card.tsx';
 import { IPost } from '@/entrypoints/content/scripts/utils.ts';
 import { ArrowBigUp, MessageCircle } from 'lucide-react';
 
-export default function PostCard({ post }: Readonly<{ post: IPost }>) {
+interface PostCardProps {
+  readonly post: IPost;
+}
+
+export default function PostCard({ post }: PostCardProps) {
   const handlePostClick = (post: IPost) => {
     if (post.link) {
       window.open(post.link, '_blank', 'noopener,noreferrer');

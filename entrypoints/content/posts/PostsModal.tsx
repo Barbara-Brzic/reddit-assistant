@@ -5,15 +5,17 @@ import PostCard from '@/entrypoints/content/posts/PostCard.tsx';
 import Modal from '@/entrypoints/content/common/Modal.tsx';
 import { X } from 'lucide-react';
 
+interface PostsModalProps {
+  readonly posts: IPost[];
+  readonly onRemove: () => void;
+  readonly isRefetching?: boolean;
+}
+
 export default function PostsModal({
   posts,
   onRemove,
   isRefetching,
-}: Readonly<{
-  posts: IPost[];
-  onRemove: () => void;
-  isRefetching?: boolean;
-}>) {
+}: PostsModalProps) {
   const { geminiResponse, loading, searchPosts, resetGeminiResponse } =
     usePostsSearch();
 

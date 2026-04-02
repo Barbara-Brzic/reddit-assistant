@@ -3,13 +3,15 @@ import { Card } from '@/components/ui/card.tsx';
 import { IComment } from '@/entrypoints/content/scripts/utils.ts';
 import { ArrowBigUp } from 'lucide-react';
 
+interface CommentCardProps {
+  readonly comment: IComment;
+  readonly handleCommentClick: (comment: IComment) => void;
+}
+
 export default function CommentCard({
   comment,
   handleCommentClick,
-}: Readonly<{
-  comment: IComment;
-  handleCommentClick: (comment: IComment) => void;
-}>) {
+}: CommentCardProps) {
   return (
     <Card
       className={
