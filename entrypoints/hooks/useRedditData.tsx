@@ -17,10 +17,17 @@ interface RedditData {
 export const useRedditData = (type: 'posts' | 'comments') => {
   const [data, setData] = useState<RedditData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isRefetching, setIsRefetching] = useState(false);
   const { limit } = useQueryLimit(type);
 
   useEffect(() => {
     async function loadRedditData() {
+      if (data) {
+        setIsRefetching(true);
+      } else {
+        setLoading(true);
+      }
+
       try {
         if (type === 'posts') {
           await loadPosts(limit);
@@ -33,6 +40,7 @@ export const useRedditData = (type: 'posts' | 'comments') => {
         setData(null);
       } finally {
         setLoading(false);
+        setIsRefetching(false);
       }
     }
 
@@ -79,5 +87,5 @@ export const useRedditData = (type: 'posts' | 'comments') => {
     loadRedditData();
   }, [type, limit]);
 
-  return { data, loading };
+  return { data, loading, isRefetching };
 };

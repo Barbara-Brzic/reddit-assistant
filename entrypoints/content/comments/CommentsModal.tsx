@@ -9,7 +9,13 @@ export default function CommentsModal({
   post,
   comments,
   onRemove,
-}: Readonly<{ post: IPost; comments: IComment[]; onRemove: () => void }>) {
+  isRefetching,
+}: Readonly<{
+  post: IPost;
+  comments: IComment[];
+  onRemove: () => void;
+  isRefetching?: boolean;
+}>) {
   const { geminiResponse, loading, searchComments, resetGeminiResponse } =
     useCommentsSearch(post, comments);
 
@@ -25,6 +31,7 @@ export default function CommentsModal({
       headerCount={comments?.length}
       type={'comments'}
       loading={loading}
+      isRefetching={isRefetching}
       onClose={onRemove}
       handleSearch={searchComments}
     >

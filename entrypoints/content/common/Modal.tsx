@@ -10,6 +10,7 @@ export default function Modal({
   headerCount,
   type,
   loading,
+  isRefetching,
   onClose,
   handleSearch,
   children,
@@ -18,6 +19,7 @@ export default function Modal({
   headerCount: number;
   type: 'posts' | 'comments';
   loading: boolean;
+  isRefetching?: boolean;
   onClose: () => void;
   handleSearch: (searchQuery: string) => void;
   children: React.ReactNode;
@@ -36,7 +38,7 @@ export default function Modal({
     <div
       className={`flex flex-col space-y-2 w-150 max-h-200 rounded-lg shadow-sm overflow-hidden bg-secondary p-4 ${
         isClosing ? 'modal-exit' : 'modal-enter'
-      }`}
+      } ${isRefetching ? 'modal-loading' : ''}`}
       style={{
         '--drag-x': `${position.x}px`,
         '--drag-y': `${position.y}px`,

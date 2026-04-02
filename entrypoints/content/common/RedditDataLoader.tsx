@@ -11,7 +11,7 @@ export default function RedditDataLoader({
   type: 'posts' | 'comments';
   onRemove: () => void;
 }>) {
-  const { data, loading } = useRedditData(type);
+  const { data, loading, isRefetching } = useRedditData(type);
 
   if (loading) {
     return (
@@ -32,12 +32,13 @@ export default function RedditDataLoader({
   }
 
   return type === 'posts' ? (
-    <PostsModal posts={data.posts} onRemove={onRemove} />
+    <PostsModal posts={data.posts} onRemove={onRemove} isRefetching={isRefetching} />
   ) : (
     <CommentsModal
       post={data.posts[0]}
       comments={data.comments}
       onRemove={onRemove}
+      isRefetching={isRefetching}
     />
   );
 }
