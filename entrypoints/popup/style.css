@@ -104,3 +104,68 @@
     color: hsl(var(--foreground));
   }
 }
+
+/* Modal animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translate(var(--drag-x), calc(var(--drag-y) - 20px)) scale(0.1);
+  }
+  to {
+    opacity: 1;
+    transform: translate(var(--drag-x), var(--drag-y)) scale(1);
+  }
+}
+
+@keyframes modalSlideOut {
+  from {
+    opacity: 1;
+    transform: translate(var(--drag-x), var(--drag-y)) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(var(--drag-x), calc(var(--drag-y) - 20px)) scale(0.1);
+  }
+}
+
+.modal-backdrop-enter {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-enter,
+.modal-exit {
+  --drag-x: 0px;
+  --drag-y: 0px;
+}
+
+.modal-enter {
+  animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: forwards;
+}
+
+.modal-backdrop-exit {
+  animation: fadeOut 0.2s ease-in;
+}
+
+.modal-exit {
+  animation: modalSlideOut 0.2s cubic-bezier(0.4, 0, 1, 1);
+  animation-fill-mode: forwards;
+}

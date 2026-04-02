@@ -12,6 +12,7 @@ export const CreateContentElement = (
 
   // Create backdrop overlay
   const backdrop = document.createElement('div');
+  backdrop.className = 'modal-backdrop-enter';
   Object.assign(backdrop.style, {
     position: 'fixed',
     top: '0',
@@ -25,10 +26,16 @@ export const CreateContentElement = (
     zIndex: '10000',
   });
 
+  // Function to handle closing with animation
+  const handleBackdropClose = () => {
+    backdrop.className = 'modal-backdrop-exit';
+    setTimeout(() => {
+      if (onRemove) onRemove();
+    }, 200);
+  };
+
   // Close modal when clicking backdrop
-  backdrop.addEventListener('click', () => {
-    if (onRemove) onRemove();
-  });
+  backdrop.addEventListener('click', handleBackdropClose);
 
   // Create app container with dark mode
   const app = document.createElement('div');
