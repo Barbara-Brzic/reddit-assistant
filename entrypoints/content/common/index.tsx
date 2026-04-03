@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client';
 import React, { StrictMode } from 'react';
 import { Toaster } from 'react-hot-toast';
 
-export const CreateContentElement = (
+export const CreateContentRoot = (
   uiContainer: HTMLElement,
   callback: (root: ReactDOM.Root) => React.ReactNode,
   onRemove?: () => void

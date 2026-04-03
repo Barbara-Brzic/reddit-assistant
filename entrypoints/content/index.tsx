@@ -1,6 +1,6 @@
 import '../popup/style.css';
 import React from 'react';
-import { CreateContentElement } from '@/entrypoints/content/common';
+import { CreateContentRoot } from '@/entrypoints/content/common';
 import { ContentScriptContext } from 'wxt/utils/content-script-context';
 import ModalWrapper from '@/entrypoints/content/common/ModalWrapper.tsx';
 
@@ -42,7 +42,7 @@ const CreateUI = async (
         if (removeUi) removeUi();
       };
 
-      return CreateContentElement(
+      return CreateContentRoot(
         uiContainer,
         () => {
           return <ModalWrapper dataType={type} handleRemove={handleRemove} />;
