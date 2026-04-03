@@ -1,8 +1,10 @@
 import { GripVertical, CircleX } from 'lucide-react';
+import LimitSelector from '@/entrypoints/content/common/LimitSelector.tsx';
 
 interface ModalHeaderProps {
   readonly title: string;
   readonly count: number;
+  readonly dataType: 'posts' | 'comments';
   readonly onClose: () => void;
   readonly onDragStart?: (e: React.MouseEvent) => void;
 }
@@ -10,6 +12,7 @@ interface ModalHeaderProps {
 export default function ModalHeader({
   title,
   count,
+  dataType,
   onClose,
   onDragStart,
 }: ModalHeaderProps) {
@@ -25,10 +28,11 @@ export default function ModalHeader({
             size={20}
           />
         )}
-        <h1 className={'text-lg font-bold text-foreground'}>
-          {title}
-          {count > 0 && <span className={'ml-2'}>({count})</span>}
-        </h1>
+        <h1 className={'text-lg font-bold text-foreground'}>{title}</h1>
+        <LimitSelector
+          dataType={dataType}
+          showHigherLimits={dataType === 'comments'}
+        />
       </div>
       <CircleX onClick={onClose} className={'cursor-pointer text-foreground'} />
     </div>

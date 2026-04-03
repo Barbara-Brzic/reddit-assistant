@@ -1,7 +1,6 @@
 import ModalHeader from '@/entrypoints/content/common/ModalHeader.tsx';
 import SearchInput from '@/entrypoints/content/common/SearchInput.tsx';
 import { Spinner } from '@/components/ui/spinner.tsx';
-import LimitSelector from '@/entrypoints/content/common/LimitSelector.tsx';
 import { useDraggable } from '@/entrypoints/hooks/useDraggable.tsx';
 import { useState, ReactNode } from 'react';
 
@@ -41,22 +40,21 @@ export default function Modal({
       className={`flex flex-col space-y-2 w-150 max-h-200 rounded-lg shadow-sm overflow-hidden bg-secondary p-4 ${
         isClosing ? 'modal-exit' : 'modal-enter'
       } ${isRefetching ? 'modal-loading' : ''}`}
-      style={{
-        '--drag-x': `${position.x}px`,
-        '--drag-y': `${position.y}px`,
-      } as React.CSSProperties}
+      style={
+        {
+          '--drag-x': `${position.x}px`,
+          '--drag-y': `${position.y}px`,
+        } as React.CSSProperties
+      }
     >
       <ModalHeader
         title={title}
         count={headerCount}
+        dataType={dataType}
         onClose={handleClose}
         onDragStart={handleMouseDown}
       />
-      <div className={'flex items-center gap-2'}>
-        <SearchInput handleSearch={handleSearch}>
-          <LimitSelector dataType={dataType} showHigherLimits={dataType === 'comments'} />
-        </SearchInput>
-      </div>
+      <SearchInput handleSearch={handleSearch} />
 
       {loading && (
         <div className={'flex justify-center items-center p-2'}>

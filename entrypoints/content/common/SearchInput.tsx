@@ -1,17 +1,13 @@
 import { Field } from '@/components/ui/field.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Button } from '@/components/ui/button.tsx';
-import { useState, ReactNode } from 'react';
+import { useState } from 'react';
 
 interface SearchInputProps {
   readonly handleSearch: (searchQuery: string) => void;
-  readonly children?: ReactNode;
 }
 
-export default function SearchInput({
-  handleSearch,
-  children,
-}: SearchInputProps) {
+export default function SearchInput({ handleSearch }: SearchInputProps) {
   const [value, setValue] = useState('');
 
   return (
@@ -30,7 +26,6 @@ export default function SearchInput({
           'text-foreground ring-ring rounded-2xl border-reddit ring-none'
         }
       />
-      {children}
       <Button
         variant={'reddit'}
         onClick={() => handleSearch(value)}
