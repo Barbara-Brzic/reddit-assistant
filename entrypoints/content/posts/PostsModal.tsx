@@ -7,13 +7,13 @@ import { X } from 'lucide-react';
 
 interface PostsModalProps {
   readonly posts: IPost[];
-  readonly onRemove: () => void;
+  readonly handleRemove: () => void;
   readonly isRefetching?: boolean;
 }
 
 export default function PostsModal({
   posts,
-  onRemove,
+  handleRemove,
   isRefetching,
 }: PostsModalProps) {
   const { geminiResponse, loading, searchPosts, resetGeminiResponse } =
@@ -23,10 +23,10 @@ export default function PostsModal({
     <Modal
       title={'Posts'}
       headerCount={geminiResponse?.length || posts?.length}
-      type={'posts'}
+      dataType={'posts'}
       loading={loading}
       isRefetching={isRefetching}
-      onClose={onRemove}
+      handleRemove={handleRemove}
       handleSearch={(searchQuery) => searchPosts(searchQuery, posts)}
     >
       <div className="mb-2">

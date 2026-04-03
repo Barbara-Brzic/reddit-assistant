@@ -8,14 +8,14 @@ import Modal from '@/entrypoints/content/common/Modal.tsx';
 interface CommentsModalProps {
   readonly post: IPost;
   readonly comments: IComment[];
-  readonly onRemove: () => void;
+  readonly handleRemove: () => void;
   readonly isRefetching?: boolean;
 }
 
 export default function CommentsModal({
   post,
   comments,
-  onRemove,
+  handleRemove,
   isRefetching,
 }: CommentsModalProps) {
   const { geminiResponse, loading, searchComments, resetGeminiResponse } =
@@ -31,10 +31,10 @@ export default function CommentsModal({
     <Modal
       title={'Comments'}
       headerCount={comments?.length}
-      type={'comments'}
+      dataType={'comments'}
       loading={loading}
       isRefetching={isRefetching}
-      onClose={onRemove}
+      handleRemove={handleRemove}
       handleSearch={searchComments}
     >
       <MarkdownText

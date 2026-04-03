@@ -4,16 +4,16 @@ import CommentsModal from '@/entrypoints/content/comments/CommentsModal.tsx';
 import StatusMessage from '@/entrypoints/content/common/StatusMessage.tsx';
 import { useRedditData } from '@/entrypoints/hooks/useRedditData.tsx';
 
-interface RedditDataLoaderProps {
-  readonly type: 'posts' | 'comments';
-  readonly onRemove: () => void;
+interface ModalWrapperProps {
+  readonly dataType: 'posts' | 'comments';
+  readonly handleRemove: () => void;
 }
 
-export default function RedditDataLoader({
-  type,
-  onRemove,
-}: RedditDataLoaderProps) {
-  const { data, loading, isRefetching } = useRedditData(type);
+export default function ModalWrapper({
+  dataType,
+  handleRemove,
+}: ModalWrapperProps) {
+  const { data, loading, isRefetching } = useRedditData(dataType);
 
   if (loading) {
     return (
@@ -33,13 +33,13 @@ export default function RedditDataLoader({
     return <StatusMessage message={data.message} />;
   }
 
-  return type === 'posts' ? (
-    <PostsModal posts={data.posts} onRemove={onRemove} isRefetching={isRefetching} />
+  return dataType === 'posts' ? (
+    <PostsModal posts={data.posts} handleRemove={handleRemove} isRefetching={isRefetching} />
   ) : (
     <CommentsModal
       post={data.posts[0]}
       comments={data.comments}
-      onRemove={onRemove}
+      handleRemove={handleRemove}
       isRefetching={isRefetching}
     />
   );

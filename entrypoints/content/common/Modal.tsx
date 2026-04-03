@@ -8,10 +8,10 @@ import { useState, ReactNode } from 'react';
 interface ModalProps {
   readonly title: string;
   readonly headerCount: number;
-  readonly type: 'posts' | 'comments';
+  readonly dataType: 'posts' | 'comments';
   readonly loading: boolean;
   readonly isRefetching?: boolean;
-  readonly onClose: () => void;
+  readonly handleRemove: () => void;
   readonly handleSearch: (searchQuery: string) => void;
   readonly children: ReactNode;
 }
@@ -19,10 +19,10 @@ interface ModalProps {
 export default function Modal({
   title,
   headerCount,
-  type,
+  dataType,
   loading,
   isRefetching,
-  onClose,
+  handleRemove,
   handleSearch,
   children,
 }: ModalProps) {
@@ -32,7 +32,7 @@ export default function Modal({
   const handleClose = () => {
     setIsClosing(true);
     setTimeout(() => {
-      onClose();
+      handleRemove();
     }, 200); // Match animation duration
   };
 
@@ -54,7 +54,7 @@ export default function Modal({
       />
       <div className={'flex items-center gap-2'}>
         <SearchInput handleSearch={handleSearch}>
-          <LimitSelector type={type} showHigherLimits={type === 'comments'} />
+          <LimitSelector dataType={dataType} showHigherLimits={dataType === 'comments'} />
         </SearchInput>
       </div>
 

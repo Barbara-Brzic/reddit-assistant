@@ -2,7 +2,7 @@ import '../popup/style.css';
 import React from 'react';
 import { CreateContentElement } from '@/entrypoints/content/common';
 import { ContentScriptContext } from 'wxt/utils/content-script-context';
-import RedditDataLoader from '@/entrypoints/content/common/RedditDataLoader.tsx';
+import ModalWrapper from '@/entrypoints/content/common/ModalWrapper.tsx';
 
 export default defineContentScript({
   matches: ['*://*/*'],
@@ -38,16 +38,16 @@ const CreateUI = async (
     position: 'inline',
     anchor: 'body',
     onMount: (uiContainer) => {
-      const onRemove = () => {
+      const handleRemove = () => {
         if (removeUi) removeUi();
       };
 
       return CreateContentElement(
         uiContainer,
         () => {
-          return <RedditDataLoader type={type} onRemove={onRemove} />;
+          return <ModalWrapper dataType={type} handleRemove={handleRemove} />;
         },
-        onRemove
+        handleRemove
       );
     },
     onRemove(root) {
