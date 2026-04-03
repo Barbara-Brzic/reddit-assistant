@@ -12,12 +12,31 @@ export const useFormData = () => {
   });
 
   useEffect(() => {
-    chrome.storage.local.get('formData', (result) => {
+    // Load initial data
+    chrome.storage.local.get('formData', (result: { formData?: IFormData }) => {
       if (result.formData) {
-        // @ts-ignore
         setFormData(result.formData);
       }
     });
+
+    // Listen for storage changes
+    const handleStorageChange = (
+      changes: { [key: string]: chrome.storage.StorageChange },
+      areaName: string
+    ) => {
+      if (areaName === 'local' && changes.formData) {
+        const newFormData = changes.formData.newValue as IFormData;
+        if (newFormData) {
+          setFormData(newFormData);
+        }
+      }
+    };
+
+    chrome.storage.onChanged.addListener(handleStorageChange);
+
+    return () => {
+      chrome.storage.onChanged.removeListener(handleStorageChange);
+    };
   }, []);
 
   return { formData, setFormData };
