@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Eye, EyeOff, Save } from 'lucide-react';
+import { CircleQuestionMark, Eye, EyeOff, Save } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,6 +15,11 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useFormData } from '@/entrypoints/hooks/useFormData.ts';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip.tsx';
 
 const formSchema = z.object({
   endpoint: z
@@ -62,7 +67,26 @@ export default function CredentialForm() {
     <div className="mx-auto p-6 w-110">
       <div className="mb-6">
         <h2 className="text-2xl font-bold mb-2">API Configuration</h2>
-        <p className="text-muted-foreground">Enter API credentials</p>
+        <div className={'flex gap-2'}>
+          <p className="text-muted-foreground">Enter Gemini API credentials</p>
+          <Tooltip>
+            <TooltipTrigger>
+              <CircleQuestionMark className="h-4 w-4 text-muted-foreground cursor-pointer" />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>
+                You will need to obtain an API key from Gemini. You can get one{' '}
+                <a
+                  href="https://ai.google.dev/gemini-api/docs/get-started"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  here.
+                </a>
+              </p>
+            </TooltipContent>
+          </Tooltip>
+        </div>
       </div>
 
       <Form {...form}>
