@@ -10,7 +10,7 @@ function Spinner({
     <Loader2Icon
       role="status"
       aria-label="Loading"
-      className={cn('size-4 animate-spin text-primary', className)}
+      className={cn('size-4 animate-spin text-reddit', className)}
       {...props}
     />
   );

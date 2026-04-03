@@ -102,6 +102,7 @@ export default function CredentialForm() {
                     type="text"
                     placeholder="https://api.example.com"
                     {...field}
+                    className={'focus:ring-1 focus:ring-ring'}
                   />
                 </FormControl>
                 <FormMessage />
@@ -120,8 +121,8 @@ export default function CredentialForm() {
                     <Input
                       type={showApiKey ? 'text' : 'password'}
                       placeholder="Enter your API key"
-                      className="pr-10"
                       {...field}
+                      className={'pr-10 focus:ring-1 focus:ring-ring'}
                     />
                     <button
                       type="button"
@@ -142,7 +143,7 @@ export default function CredentialForm() {
           />
 
           <Button
-            variant={'default'}
+            variant={'reddit'}
             type="submit"
             className="w-full cursor-pointer mt-3"
           >

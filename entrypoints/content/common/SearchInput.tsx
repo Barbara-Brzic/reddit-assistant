@@ -26,12 +26,15 @@ export default function SearchInput({
             handleSearch(value);
           }
         }}
-        className={'text-foreground ring-ring'}
+        className={
+          'text-foreground ring-ring rounded-2xl border-reddit ring-none'
+        }
       />
       {children}
       <Button
+        variant={'reddit'}
         onClick={() => handleSearch(value)}
-        className={'cursor-pointer animate-pulse'}
+        className={'cursor-pointer'}
       >
         Search
       </Button>

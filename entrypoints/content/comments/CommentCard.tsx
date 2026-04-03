@@ -15,7 +15,7 @@ export default function CommentCard({
   return (
     <Card
       className={
-        'flex flex-col p-3 bg-card shadow-sm rounded-lg hover:-translate-y-1 hover:shadow-xl cursor-pointer text-sm transition-all duration-300 ease-out'
+        'flex flex-col p-3 bg-card shadow-sm rounded-2xl border-primary/40 hover:-translate-y-1 hover:shadow-xl cursor-pointer text-sm transition-all duration-300 ease-out'
       }
       style={{
         maxWidth: '100%',
@@ -38,7 +38,7 @@ export default function CommentCard({
       <Badge
         variant={'outline'}
         className={
-          'flex items-center gap-1 text-primary/80 border-primary/40 mt-3 w-fit'
+          'flex items-center gap-1 rounded-2xl text-primary/80 border-primary/40 mt-3 w-fit'
         }
       >
         <ArrowBigUp className={'h-3 w-3'} />

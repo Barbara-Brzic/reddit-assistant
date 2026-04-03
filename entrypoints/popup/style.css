@@ -21,6 +21,8 @@
   --color-border: hsl(0 0% 89.8%);
   --color-input: hsl(0 0% 89.8%);
   --color-ring: hsl(0 0% 3.9%);
+  --color-reddit: hsl(16 100% 50%);
+  --color-reddit-foreground: hsl(0 0% 100%);
 
   --radius-lg: 0.5rem;
   --radius-md: calc(0.5rem - 2px);
@@ -48,6 +50,8 @@
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
+    --reddit: 16 100% 50%;
+    --reddit-foreground: 0 0% 100%;
   }
 
   .dark {
@@ -71,6 +75,8 @@
     --color-border: hsl(0 0% 14.9%);
     --color-input: hsl(0 0% 14.9%);
     --color-ring: hsl(0 0% 83.1%);
+    --color-reddit: hsl(16 100% 50%);
+    --color-reddit-foreground: hsl(0 0% 100%);
 
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -92,6 +98,8 @@
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
+    --reddit: 16 100% 50%;
+    --reddit-foreground: 0 0% 100%;
   }
 }
 

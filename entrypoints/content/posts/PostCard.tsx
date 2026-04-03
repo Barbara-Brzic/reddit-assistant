@@ -18,7 +18,7 @@ export default function PostCard({ post }: PostCardProps) {
     <Card
       key={post.id}
       className={
-        'flex flex-col px-4 py-2 bg-card drop-shadow-md rounded-lg hover:-translate-y-1 hover:shadow-xl cursor-pointer transition-all duration-300 ease-out'
+        'flex flex-col px-4 py-2 bg-card drop-shadow-md rounded-2xl border-primary/40 hover:-translate-y-1 hover:shadow-xl cursor-pointer transition-all duration-300 ease-out'
       }
       style={{
         maxWidth: '100%',
@@ -39,7 +39,7 @@ export default function PostCard({ post }: PostCardProps) {
         <Badge
           variant={'outline'}
           className={
-            'flex items-center gap-1 text-primary/80 border-primary/40'
+            'flex items-center gap-1 text-primary/80 border-primary/40 rounded-2xl'
           }
         >
           <ArrowBigUp className={'h-3 w-3'} />
@@ -48,7 +48,7 @@ export default function PostCard({ post }: PostCardProps) {
         <Badge
           variant={'outline'}
           className={
-            'flex items-center gap-1 text-primary/80 border-primary/40'
+            'flex items-center gap-1 text-primary/80 border-primary/40 rounded-2xl'
           }
         >
           <MessageCircle className={'h-3 w-3'} />
