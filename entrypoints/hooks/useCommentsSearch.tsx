@@ -4,13 +4,13 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 export default function useCommentsSearch(post: IPost, comments: IComment[]) {
-  const [geminiResponse, setGeminiResponse] = useState<string | null>(null);
+  const [aiResponse, setAiResponse] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const { formData } = useFormData();
 
   const searchComments = async (searchQuery: string) => {
     setLoading(true);
-    setGeminiResponse(null);
+    setAiResponse(null);
 
     const url = `${formData.endpoint}?key=${formData.apiKey}`;
     const payload = createGeminiPayload(searchQuery);
@@ -19,14 +19,14 @@ export default function useCommentsSearch(post: IPost, comments: IComment[]) {
       const response = await axios.post(url, payload, {
         headers: { 'Content-Type': 'application/json' },
       });
-      setGeminiResponse(
+      setAiResponse(
         response.data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ||
           null
       );
     } catch (error) {
       toast.error('Failed to fetch data from Gemini');
       console.error('Error fetching data:', error);
-      setGeminiResponse(null);
+      setAiResponse(null);
     } finally {
       setLoading(false);
     }
@@ -77,7 +77,7 @@ export default function useCommentsSearch(post: IPost, comments: IComment[]) {
     };
   };
 
-  const resetGeminiResponse = () => setGeminiResponse(null);
+  const resetAiResponse = () => setAiResponse(null);
 
-  return { geminiResponse, loading, searchComments, resetGeminiResponse };
+  return { aiResponse, loading, searchComments, resetAiResponse };
 }

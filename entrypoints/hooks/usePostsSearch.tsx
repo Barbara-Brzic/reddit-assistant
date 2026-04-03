@@ -7,13 +7,13 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 export default function usePostsSearch() {
-  const [geminiResponse, setGeminiResponse] = useState<IPost[]>([]);
+  const [aiResponse, setAiResponse] = useState<IPost[]>([]);
   const [loading, setLoading] = useState(false);
   const { formData } = useFormData();
 
   const searchPosts = async (searchQuery: string, posts: IPost[]) => {
     setLoading(true);
-    setGeminiResponse([]);
+    setAiResponse([]);
 
     const url = `${formData.endpoint}?key=${formData.apiKey}`;
     const payload = createGeminiPayload(searchQuery, posts);
@@ -22,11 +22,11 @@ export default function usePostsSearch() {
       const response = await axios.post(url, payload, {
         headers: { 'Content-Type': 'application/json' },
       });
-      setGeminiResponse(extractGeminiResponse(response));
+      setAiResponse(extractGeminiResponse(response));
     } catch (error) {
       toast.error('Failed to fetch data from Gemini. Check your API key');
       console.error('Error fetching data:', error);
-      setGeminiResponse([]);
+      setAiResponse([]);
     } finally {
       setLoading(false);
     }
@@ -72,7 +72,7 @@ export default function usePostsSearch() {
     return extractJsonListFromMarkdown(data);
   };
 
-  const resetGeminiResponse = () => setGeminiResponse([]);
+  const resetAiResponse = () => setAiResponse([]);
 
-  return { geminiResponse, loading, searchPosts, resetGeminiResponse };
+  return { aiResponse, loading, searchPosts, resetAiResponse };
 }

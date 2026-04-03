@@ -34,11 +34,17 @@ export default function ModalWrapper({
   }
 
   return dataType === 'posts' ? (
-    <PostsModal posts={data.posts} handleRemove={handleRemove} isRefetching={isRefetching} />
+    <PostsModal
+      data={{ posts: data.posts }}
+      handleRemove={handleRemove}
+      isRefetching={isRefetching}
+    />
   ) : (
     <CommentsModal
-      post={data.posts[0]}
-      comments={data.comments}
+      data={{
+        post: data.posts[0],
+        comments: data.comments,
+      }}
       handleRemove={handleRemove}
       isRefetching={isRefetching}
     />

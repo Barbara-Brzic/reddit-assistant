@@ -6,19 +6,21 @@ import MarkdownText from '@/entrypoints/content/comments/MarkdownText.tsx';
 import Modal from '@/entrypoints/content/common/Modal.tsx';
 
 interface CommentsModalProps {
-  readonly post: IPost;
-  readonly comments: IComment[];
+  readonly data: {
+    post: IPost;
+    comments: IComment[];
+  };
   readonly handleRemove: () => void;
   readonly isRefetching?: boolean;
 }
 
 export default function CommentsModal({
-  post,
-  comments,
+  data,
   handleRemove,
   isRefetching,
 }: CommentsModalProps) {
-  const { geminiResponse, loading, searchComments, resetGeminiResponse } =
+  const { post, comments } = data;
+  const { aiResponse, loading, searchComments, resetAiResponse } =
     useCommentsSearch(post, comments);
 
   const handleCommentClick = (comment: IComment) => {
@@ -37,17 +39,14 @@ export default function CommentsModal({
       handleRemove={handleRemove}
       handleSearch={searchComments}
     >
-      <MarkdownText
-        markdown={geminiResponse}
-        handleCancel={resetGeminiResponse}
-      />
+      <MarkdownText markdown={aiResponse} handleCancel={resetAiResponse} />
 
       <div className="mb-2">
         <h3 className="text-sm font-semibold mb-2 px-2 text-muted-foreground">
           Comments
         </h3>
         <ScrollArea
-          className={geminiResponse ? 'h-80' : 'h-130'}
+          className={aiResponse ? 'h-80' : 'h-130'}
           style={{ width: '100%' }}
         >
           <div className={'flex flex-col gap-2'}>
