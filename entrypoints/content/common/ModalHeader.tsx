@@ -1,4 +1,4 @@
-import { X, GripVertical } from 'lucide-react';
+import { GripVertical, CircleX } from 'lucide-react';
 
 interface ModalHeaderProps {
   readonly title: string;
@@ -19,7 +19,9 @@ export default function ModalHeader({
         {onDragStart && (
           <GripVertical
             onMouseDown={onDragStart}
-            className={'cursor-move text-muted-foreground hover:text-foreground transition-colors'}
+            className={
+              'cursor-move text-muted-foreground hover:text-foreground transition-colors'
+            }
             size={20}
           />
         )}
@@ -28,7 +30,7 @@ export default function ModalHeader({
           {count > 0 && <span className={'ml-2'}>({count})</span>}
         </h1>
       </div>
-      <X onClick={onClose} className={'cursor-pointer text-foreground'} />
+      <CircleX onClick={onClose} className={'cursor-pointer text-foreground'} />
     </div>
   );
 }
