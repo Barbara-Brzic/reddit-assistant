@@ -183,3 +183,24 @@
 .modal-loading * {
   cursor: wait !important;
 }
+
+/* Search input gradient border animation */
+@keyframes borderGradientSweep {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.search-input-gradient {
+  border: 1px solid transparent;
+  background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
+              linear-gradient(90deg, hsl(16 100% 50%), hsl(45 100% 50%), hsl(16 100% 50%)) border-box;
+  background-size: 200% 100%;
+  animation: borderGradientSweep 2s ease-in-out infinite;
+}

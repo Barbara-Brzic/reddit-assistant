@@ -23,7 +23,7 @@ export default function SearchInput({ handleSearch }: SearchInputProps) {
           }
         }}
         className={
-          'text-foreground ring-ring rounded-2xl border-reddit ring-none'
+          'text-foreground ring-ring rounded-2xl search-input-gradient ring-none'
         }
       />
       <Button
