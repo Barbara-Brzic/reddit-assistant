@@ -29,7 +29,10 @@ export default function SearchInput({
         className={'text-foreground ring-ring'}
       />
       {children}
-      <Button onClick={() => handleSearch(value)} className={'cursor-pointer'}>
+      <Button
+        onClick={() => handleSearch(value)}
+        className={'cursor-pointer animate-pulse'}
+      >
         Search
       </Button>
     </Field>

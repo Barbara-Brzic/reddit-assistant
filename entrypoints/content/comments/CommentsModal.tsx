@@ -49,7 +49,7 @@ export default function CommentsModal({
           className={aiResponse ? 'h-80' : 'h-130'}
           style={{ width: '100%' }}
         >
-          <div className={'flex flex-col gap-2'}>
+          <div className={'flex flex-col gap-3 pt-1'}>
             {comments?.map((comment) => (
               <CommentCard
                 comment={comment}

@@ -18,9 +18,13 @@ export default function PostCard({ post }: PostCardProps) {
     <Card
       key={post.id}
       className={
-        'flex flex-col px-4 py-2 bg-card drop-shadow-md rounded-lg hover:bg-card-hover cursor-pointer'
+        'flex flex-col px-4 py-2 bg-card drop-shadow-md rounded-lg hover:-translate-y-1 hover:shadow-xl cursor-pointer transition-all duration-300 ease-out'
       }
-      style={{ maxWidth: '100%', wordBreak: 'break-word' }}
+      style={{
+        maxWidth: '100%',
+        wordBreak: 'break-word',
+        willChange: 'transform',
+      }}
       onClick={() => handlePostClick(post)}
     >
       {post.tag && (
