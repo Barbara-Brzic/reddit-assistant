@@ -1,6 +1,6 @@
 import Markdown from 'react-markdown';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { X } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 
 interface MarkdownTextProps {
   readonly markdown: string | null;
@@ -17,8 +17,9 @@ export default function MarkdownText({
     <div className="mb-2">
       <h3 className="flex gap-2 text-sm font-semibold mb-2 px-2 text-muted-foreground items-center">
         AI Response
-        <X
+        <Trash2
           className={'text-destructive cursor-pointer'}
+          size={17}
           onClick={handleCancel}
         />
       </h3>
