@@ -202,5 +202,12 @@
   background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
               linear-gradient(90deg, hsl(16 100% 50%), hsl(45 100% 50%), hsl(16 100% 50%)) border-box;
   background-size: 200% 100%;
-  animation: borderGradientSweep 2s ease-in-out infinite;
+  animation: borderGradientSweep 4s ease-in-out infinite;
+}
+
+/* button gradient (static) */
+.button-gradient {
+  background: linear-gradient(90deg, hsl(16 100% 50%), hsl(45 100% 50%));
+  color: hsl(0 0% 9%);
+  border: none;
 }

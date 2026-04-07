@@ -19,7 +19,6 @@ const buttonVariants = cva(
           'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
-        reddit: 'bg-reddit text-primary shadow hover:bg-reddit/90 rounded-2xl',
       },
       size: {
         default: 'h-9 px-4 py-2',

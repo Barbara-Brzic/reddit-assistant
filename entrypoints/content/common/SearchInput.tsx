@@ -27,9 +27,8 @@ export default function SearchInput({ handleSearch }: SearchInputProps) {
         }
       />
       <Button
-        variant={'reddit'}
         onClick={() => handleSearch(value)}
-        className={'cursor-pointer'}
+        className={'cursor-pointer button-gradient rounded-2xl'}
       >
         Search
       </Button>
