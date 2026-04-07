@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { CircleQuestionMark, Eye, EyeOff, Save } from 'lucide-react';
-import toast from 'react-hot-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -58,9 +57,11 @@ export default function CredentialForm() {
 
   const onSubmit = (data: FormValues) => {
     setFormData(data);
-    chrome.storage.local.set({ formData: data }, () =>
-      toast.success('API credentials saved')
-    );
+    chrome.storage.local.set({ formData: data }, () => {
+      setTimeout(() => {
+        window.close();
+      }, 200);
+    });
   };
 
   return (
