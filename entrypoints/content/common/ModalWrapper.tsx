@@ -18,7 +18,7 @@ export default function ModalWrapper({
   if (loading) {
     return (
       <div className="flex items-center justify-center p-8 bg-secondary rounded-2xl">
-        <Spinner className="h-6 w-6 text-primary" />
+        <Spinner className="h-6 w-6 text-reddit" />
       </div>
     );
   }
