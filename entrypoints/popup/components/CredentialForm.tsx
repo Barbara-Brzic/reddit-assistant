@@ -143,9 +143,8 @@ export default function CredentialForm() {
           />
 
           <Button
-            variant={'reddit'}
             type="submit"
-            className="w-full cursor-pointer mt-3"
+            className="w-full cursor-pointer mt-3 button-gradient"
           >
             <Save className="mr-2 h-4 w-4" />
             Save

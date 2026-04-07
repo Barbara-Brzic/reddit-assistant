@@ -37,7 +37,7 @@ export default function Modal({
 
   return (
     <div
-      className={`flex flex-col space-y-2 w-150 max-h-200 rounded-lg shadow-sm overflow-hidden bg-secondary p-4 ${
+      className={`flex flex-col space-y-2 w-150 max-h-200 rounded-2xl shadow-sm overflow-hidden bg-secondary p-4 ${
         isClosing ? 'modal-exit' : 'modal-enter'
       } ${isRefetching ? 'modal-loading' : ''}`}
       style={
