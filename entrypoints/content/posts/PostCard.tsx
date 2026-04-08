@@ -28,7 +28,7 @@ export default function PostCard({ post }: PostCardProps) {
       onClick={() => handlePostClick(post)}
     >
       {post.tag && (
-        <div className={'ml-auto text-sm'}>
+        <div className={'ml-auto text-sm mb-1'}>
           <Badge variant={'secondary'}>{post.tag}</Badge>
         </div>
       )}
