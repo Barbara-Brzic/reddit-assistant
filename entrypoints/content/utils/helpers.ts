@@ -1,20 +1,4 @@
-export interface IPost {
-  id: string;
-  title: string;
-  link: string;
-  comments: number;
-  tag: string | null;
-  description: string | null;
-  score: number;
-}
-
-export interface IComment {
-  id: string;
-  author: string;
-  comment: string;
-  permalink: string;
-  score: number;
-}
+import type { IPost } from '@/entrypoints/content/types/reddit.ts';
 
 export function extractJsonListFromMarkdown(markdownText: string): IPost[] {
   const jsonRegex = /```(?:json|javascript)?\n([\s\S]*?)\n```|`({[\s\S]*?})`/g;
@@ -36,4 +20,14 @@ export function extractJsonListFromMarkdown(markdownText: string): IPost[] {
   }
 
   return jsonList || [];
+}
+
+export function getCurrentSubreddit(): string | null {
+  const match = globalThis.location.pathname.match(/^\/r\/([^\/]+)/);
+  return match ? match[1] : null;
+}
+
+export function getCurrentPostId(): string | null {
+  const match = globalThis.location.pathname.match(/\/comments\/([^\/]+)/);
+  return match ? match[1] : null;
 }

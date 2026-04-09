@@ -1,7 +1,7 @@
 import { Badge } from '@/components/ui/badge.tsx';
 import { Card } from '@/components/ui/card.tsx';
-import { IPost } from '@/entrypoints/content/scripts/utils.ts';
 import { ArrowBigUp, MessageCircle } from 'lucide-react';
+import { IPost } from '@/entrypoints/content/types/reddit.ts';
 
 interface PostCardProps {
   readonly post: IPost;

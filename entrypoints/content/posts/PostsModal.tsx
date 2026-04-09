@@ -1,9 +1,9 @@
-import { IPost } from '@/entrypoints/content/scripts/utils.ts';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import usePostsSearch from '@/entrypoints/hooks/usePostsSearch.tsx';
 import PostCard from '@/entrypoints/content/posts/PostCard.tsx';
 import Modal from '@/entrypoints/content/common/Modal.tsx';
 import { X } from 'lucide-react';
+import { IPost } from '@/entrypoints/content/types/reddit.ts';
 
 interface PostsModalProps {
   readonly data: { posts: IPost[] };

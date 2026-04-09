@@ -1,7 +1,7 @@
 import { Badge } from '@/components/ui/badge.tsx';
 import { Card } from '@/components/ui/card.tsx';
-import { IComment } from '@/entrypoints/content/scripts/utils.ts';
 import { ArrowBigUp } from 'lucide-react';
+import { IComment } from '@/entrypoints/content/types/reddit.ts';
 
 interface CommentCardProps {
   readonly comment: IComment;

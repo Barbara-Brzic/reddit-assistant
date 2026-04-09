@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import {
   fetchPostComments,
   fetchSubredditPosts,
+} from '@/entrypoints/content/api/reddit-api.ts';
+import useQueryLimit from '@/entrypoints/hooks/useQueryLimit.tsx';
+import { IComment, IPost } from '@/entrypoints/content/types/reddit.ts';
+import {
   getCurrentPostId,
   getCurrentSubreddit,
-} from '@/entrypoints/content/scripts/reddit-api.ts';
-import { IComment, IPost } from '@/entrypoints/content/scripts/utils.ts';
-import useQueryLimit from '@/entrypoints/hooks/useQueryLimit.tsx';
+} from '@/entrypoints/content/utils/helpers.ts';
 
 interface RedditData {
   posts: IPost[];

@@ -1,7 +1,7 @@
-import { IComment, IPost } from '@/entrypoints/content/scripts/utils.ts';
 import { useFormData } from '@/entrypoints/hooks/useFormData.ts';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { IComment, IPost } from '@/entrypoints/content/types/reddit.ts';
 
 export default function useCommentsSearch(post: IPost, comments: IComment[]) {
   const [aiResponse, setAiResponse] = useState<string | null>(null);

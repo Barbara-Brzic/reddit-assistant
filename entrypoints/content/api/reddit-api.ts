@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IPost, IComment } from './utils.ts';
+import type { IPost, IComment } from '@/entrypoints/content/types/reddit.ts';
 
 const REDDIT_API_BASE = 'https://www.reddit.com';
 
@@ -114,14 +114,4 @@ function extractComments(commentsData: any[]): IComment[] {
   }
 
   return comments;
-}
-
-export function getCurrentSubreddit(): string | null {
-  const match = globalThis.location.pathname.match(/^\/r\/([^\/]+)/);
-  return match ? match[1] : null;
-}
-
-export function getCurrentPostId(): string | null {
-  const match = globalThis.location.pathname.match(/\/comments\/([^\/]+)/);
-  return match ? match[1] : null;
 }

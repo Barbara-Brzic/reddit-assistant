@@ -1,9 +1,9 @@
-import { IComment, IPost } from '@/entrypoints/content/scripts/utils.ts';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
 import useCommentsSearch from '@/entrypoints/hooks/useCommentsSearch.tsx';
 import CommentCard from '@/entrypoints/content/comments/CommentCard.tsx';
 import MarkdownText from '@/entrypoints/content/comments/MarkdownText.tsx';
 import Modal from '@/entrypoints/content/common/Modal.tsx';
+import { IComment, IPost } from '@/entrypoints/content/types/reddit.ts';
 
 interface CommentsModalProps {
   readonly data: {

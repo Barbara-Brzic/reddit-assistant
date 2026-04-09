@@ -1,10 +1,8 @@
 import { useFormData } from '@/entrypoints/hooks/useFormData.ts';
-import {
-  extractJsonListFromMarkdown,
-  IPost,
-} from '@/entrypoints/content/scripts/utils.ts';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { IPost } from '@/entrypoints/content/types/reddit.ts';
+import { extractJsonListFromMarkdown } from '@/entrypoints/content/utils/helpers.ts';
 
 export default function usePostsSearch() {
   const [aiResponse, setAiResponse] = useState<IPost[]>([]);
