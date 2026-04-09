@@ -4,12 +4,14 @@ export default defineBackground({
       chrome.contextMenus.create({
         id: 'post',
         title: 'Filter Posts',
-        contexts: ['all'],
+        contexts: ['page'],
+        documentUrlPatterns: ['*://*.reddit.com/*'],
       });
       chrome.contextMenus.create({
         id: 'comment',
         title: 'Analyze Comments',
-        contexts: ['all'],
+        contexts: ['page'],
+        documentUrlPatterns: ['*://*.reddit.com/*'],
       });
     });
 
