@@ -5,7 +5,7 @@ import { ContentScriptContext } from 'wxt/utils/content-script-context';
 import ModalWrapper from '@/entrypoints/content/common/ModalWrapper.tsx';
 
 export default defineContentScript({
-  matches: ['*://*/*'],
+  matches: ['*://*.reddit.com/*'],
   cssInjectionMode: 'ui',
   async main(ctx) {
     chrome.runtime.onMessage.addListener(async (message) => {
