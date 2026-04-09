@@ -6,7 +6,6 @@ import { useState, ReactNode } from 'react';
 
 interface ModalProps {
   readonly title: string;
-  readonly headerCount: number;
   readonly dataType: 'posts' | 'comments';
   readonly loading: boolean;
   readonly isRefetching?: boolean;
@@ -17,7 +16,6 @@ interface ModalProps {
 
 export default function Modal({
   title,
-  headerCount,
   dataType,
   loading,
   isRefetching,
@@ -49,7 +47,6 @@ export default function Modal({
     >
       <ModalHeader
         title={title}
-        count={headerCount}
         dataType={dataType}
         onClose={handleClose}
         onDragStart={handleMouseDown}

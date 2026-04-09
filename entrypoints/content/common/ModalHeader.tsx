@@ -3,7 +3,6 @@ import LimitSelector from '@/entrypoints/content/common/LimitSelector.tsx';
 
 interface ModalHeaderProps {
   readonly title: string;
-  readonly count: number;
   readonly dataType: 'posts' | 'comments';
   readonly onClose: () => void;
   readonly onDragStart?: (e: React.MouseEvent) => void;
@@ -11,7 +10,6 @@ interface ModalHeaderProps {
 
 export default function ModalHeader({
   title,
-  count,
   dataType,
   onClose,
   onDragStart,
@@ -29,10 +27,12 @@ export default function ModalHeader({
           />
         )}
         <h1 className={'text-lg font-bold text-foreground'}>{title}</h1>
-        <LimitSelector
-          dataType={dataType}
-          showHigherLimits={dataType === 'comments'}
-        />
+        <div className={'ml-1'}>
+          <LimitSelector
+            dataType={dataType}
+            showHigherLimits={dataType === 'comments'}
+          />
+        </div>
       </div>
       <CircleX onClick={onClose} className={'cursor-pointer text-foreground'} />
     </div>

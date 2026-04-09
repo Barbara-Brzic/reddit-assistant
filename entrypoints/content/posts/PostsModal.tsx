@@ -23,7 +23,6 @@ export default function PostsModal({
   return (
     <Modal
       title={'Posts'}
-      headerCount={aiResponse?.length || posts?.length}
       dataType={'posts'}
       loading={loading}
       isRefetching={isRefetching}

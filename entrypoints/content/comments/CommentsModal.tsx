@@ -32,7 +32,6 @@ export default function CommentsModal({
   return (
     <Modal
       title={'Comments'}
-      headerCount={comments?.length}
       dataType={'comments'}
       loading={loading}
       isRefetching={isRefetching}
