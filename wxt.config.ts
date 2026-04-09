@@ -9,14 +9,8 @@ export default defineConfig({
       name: 'Reddit Assistant',
       description: 'Reddit Assistant',
       version: '1.0.0',
-      permissions: [
-        'storage',
-        'tabs',
-        'activeTab',
-        'scripting',
-        'contextMenus',
-        'declarativeNetRequest',
-      ],
+      permissions: ['storage', 'tabs', 'activeTab', 'contextMenus'],
+      host_permissions: ['*://*.reddit.com/*'],
     };
   },
 });
