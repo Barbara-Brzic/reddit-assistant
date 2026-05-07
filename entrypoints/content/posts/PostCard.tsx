@@ -18,7 +18,7 @@ export default function PostCard({ post }: PostCardProps) {
     <Card
       key={post.id}
       className={
-        'flex flex-col px-4 py-2 bg-card drop-shadow-md rounded-2xl border-primary/40 hover:-translate-y-1 hover:shadow-xl cursor-pointer transition-all duration-300 ease-out'
+        'flex flex-col px-4 py-2 bg-card drop-shadow-md rounded-2xl border-primary/40 hover:border-orange-500 cursor-pointer transition-all duration-300 ease-out'
       }
       style={{
         maxWidth: '100%',

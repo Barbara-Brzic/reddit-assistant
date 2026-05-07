@@ -15,7 +15,7 @@ export default function CommentCard({
   return (
     <Card
       className={
-        'flex flex-col p-3 bg-card shadow-sm rounded-2xl border-primary/40 hover:-translate-y-1 hover:shadow-xl cursor-pointer text-sm transition-all duration-300 ease-out'
+        'flex flex-col p-3 bg-card shadow-sm rounded-2xl border-primary/40 hover:border-orange-500 hover:shadow-xl cursor-pointer text-sm transition-all duration-300 ease-out'
       }
       style={{
         maxWidth: '100%',
